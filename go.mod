@@ -1,0 +1,11 @@
+module github.com/ibldzn/spinner-hut
+
+go 1.25.5
+
+require (
+	github.com/go-chi/chi/v5 v5.2.4
+	github.com/jmoiron/sqlx v1.4.0
+	github.com/joho/godotenv v1.5.1
+)
+
+require github.com/go-sql-driver/mysql v1.9.3 // indirect

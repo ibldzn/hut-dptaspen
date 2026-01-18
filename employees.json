@@ -1,0 +1,1622 @@
+[
+  {
+    "ID": 1,
+    "NAMA_KARYAWAN": "AA Ngr Oka Muliawan",
+    "JABATAN": "Komisaris Utama",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 2,
+    "NAMA_KARYAWAN": "Andi Purwadi",
+    "JABATAN": "Komisaris Independen",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 3,
+    "NAMA_KARYAWAN": "Maskum",
+    "JABATAN": "Komisaris Independen",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 4,
+    "NAMA_KARYAWAN": "Iwan Soeroto",
+    "JABATAN": "Direktur Utama",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 5,
+    "NAMA_KARYAWAN": "Suryo Subeno",
+    "JABATAN": "Direktur",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 6,
+    "NAMA_KARYAWAN": "Indri Mukti Mulyani",
+    "JABATAN": "Direktur",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 7,
+    "NAMA_KARYAWAN": "Halomoan Tobing",
+    "JABATAN": "Audit Committee",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 8,
+    "NAMA_KARYAWAN": "Jeffry Paulus Sinaga",
+    "JABATAN": "Remuneration and Nomination Committee",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 9,
+    "NAMA_KARYAWAN": "Abdul Latib",
+    "JABATAN": "Risk Monitoring Committee",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 10,
+    "NAMA_KARYAWAN": "Arum Desepri Aripyanto",
+    "JABATAN": "Risk Monitoring Committee",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 1,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 11,
+    "NAMA_KARYAWAN": "Sri Handayani",
+    "JABATAN": "General Manager of Operations",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 12,
+    "NAMA_KARYAWAN": "Rika Andriani",
+    "JABATAN": "General Manager of Business",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 13,
+    "NAMA_KARYAWAN": "Dwi Sulastri",
+    "JABATAN": "General Manager of Finance",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 14,
+    "NAMA_KARYAWAN": "Samuel Timothy",
+    "JABATAN": "Head of Funding and Research Development Business",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 15,
+    "NAMA_KARYAWAN": "Mulyarti",
+    "JABATAN": "Head of Internal Audit",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 16,
+    "NAMA_KARYAWAN": "Ratmo",
+    "JABATAN": "Head of Legal and Compliance",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 17,
+    "NAMA_KARYAWAN": "Dini Dwi Utami",
+    "JABATAN": "Manager of Accounting and Business Plan",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 18,
+    "NAMA_KARYAWAN": "M. Iqbal Ainurrosi",
+    "JABATAN": "Manager of Business",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 19,
+    "NAMA_KARYAWAN": "Karin Valent Novita",
+    "JABATAN": "Manager of Business Distribution",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 20,
+    "NAMA_KARYAWAN": "Enung Sriyanti",
+    "JABATAN": "Manager of Risk Business Control",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 21,
+    "NAMA_KARYAWAN": "Dian Rimarni",
+    "JABATAN": "Advisor Manager of Insurance",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 22,
+    "NAMA_KARYAWAN": "Firman Subagio",
+    "JABATAN": "Advisor Manager of IT",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 23,
+    "NAMA_KARYAWAN": "Dewi Novitayanti Diyono",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 24,
+    "NAMA_KARYAWAN": "Fauzi Hasan",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 25,
+    "NAMA_KARYAWAN": "Irna Dwi Puspita",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 26,
+    "NAMA_KARYAWAN": "Salahudin",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 27,
+    "NAMA_KARYAWAN": "Sabar Bagiyo",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 28,
+    "NAMA_KARYAWAN": "Emil Salim",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 29,
+    "NAMA_KARYAWAN": "Nikko Putra Ardiatna",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 30,
+    "NAMA_KARYAWAN": "Masagus Kahfi Taufik",
+    "JABATAN": "Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 31,
+    "NAMA_KARYAWAN": "Ike Agustina",
+    "JABATAN": "Assistant Manager of Accounting and Business Plan",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 32,
+    "NAMA_KARYAWAN": "Muhammad Subchan",
+    "JABATAN": "Assistant Manager of Business",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 33,
+    "NAMA_KARYAWAN": "Darus Salam",
+    "JABATAN": "Assistant Manager of IT Network and Operations",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 34,
+    "NAMA_KARYAWAN": "Aldhi Ferdiansyah",
+    "JABATAN": "Assistant Manager of IT Support and Development",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 35,
+    "NAMA_KARYAWAN": "Avita Rahmani",
+    "JABATAN": "Assistant of Internal Audit",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 36,
+    "NAMA_KARYAWAN": "Indah Putri Dwi Purbonegari",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 37,
+    "NAMA_KARYAWAN": "Ibnu Sidik",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 38,
+    "NAMA_KARYAWAN": "Hardio Chandra",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 39,
+    "NAMA_KARYAWAN": "Zulfikar Suryakusumah",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 40,
+    "NAMA_KARYAWAN": "Eko Bagus Darmawan",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 41,
+    "NAMA_KARYAWAN": "Alvin Surya Wijaya Abrianto",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 42,
+    "NAMA_KARYAWAN": "Desiana Setyowati",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 43,
+    "NAMA_KARYAWAN": "Fitriana Mutia",
+    "JABATAN": "Assistant of Branch Manager",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 44,
+    "NAMA_KARYAWAN": "Muhammad Ali Mahbub Zuhdi",
+    "JABATAN": "Sub Branch Manager",
+    "KANTOR_CABANG": "Kantor Kas Bekasi",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 45,
+    "NAMA_KARYAWAN": "Mariana Yuliastuti",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 46,
+    "NAMA_KARYAWAN": "Mulia Ardiansyah",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 47,
+    "NAMA_KARYAWAN": "Adryan Sukmana",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 48,
+    "NAMA_KARYAWAN": "Heri Lingga Mustika",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 49,
+    "NAMA_KARYAWAN": "Amanullah Ichsan Prianto",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 50,
+    "NAMA_KARYAWAN": "Warjo",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 51,
+    "NAMA_KARYAWAN": "Dika Rizqia Saputra",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 52,
+    "NAMA_KARYAWAN": "Fajar Aji Pratama",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 53,
+    "NAMA_KARYAWAN": "Damhar Abudapes",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 54,
+    "NAMA_KARYAWAN": "Hafidz Firmansyah",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 55,
+    "NAMA_KARYAWAN": "Fikri Suhada Wijayanto",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 56,
+    "NAMA_KARYAWAN": "Arif Budijono",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 57,
+    "NAMA_KARYAWAN": "Agung Nurfalaq",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 58,
+    "NAMA_KARYAWAN": "Ari Thorik Khoeri",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 59,
+    "NAMA_KARYAWAN": "Opan Meiriza Sofana",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 60,
+    "NAMA_KARYAWAN": "Arya Ibrani",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 61,
+    "NAMA_KARYAWAN": "Restu Fauzi",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 62,
+    "NAMA_KARYAWAN": "Bambang Susilo",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 63,
+    "NAMA_KARYAWAN": "Dzaki Anugerah Mucharam",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 64,
+    "NAMA_KARYAWAN": "Damar Peto Alam Pratama",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 65,
+    "NAMA_KARYAWAN": "Roska Anggadita",
+    "JABATAN": "Account Officer",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 66,
+    "NAMA_KARYAWAN": "Rhomandani Mustika Budiarti",
+    "JABATAN": "Accounting",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 67,
+    "NAMA_KARYAWAN": "Bayu Oryan",
+    "JABATAN": "Accounting",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 68,
+    "NAMA_KARYAWAN": "Mohammad Catur Istiqlal",
+    "JABATAN": "Admin BSC (Bisnis Support Channeling)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 69,
+    "NAMA_KARYAWAN": "Nurul Izzah Choirunnisa",
+    "JABATAN": "Admin BSC (Bisnis Support Channeling)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 70,
+    "NAMA_KARYAWAN": "Kezia Monika Sinaga",
+    "JABATAN": "Admin BSC (Bisnis Support Channeling)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 71,
+    "NAMA_KARYAWAN": "Siti Maynata Fatimah Sari",
+    "JABATAN": "Admin Credit (Cepat)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 72,
+    "NAMA_KARYAWAN": "Muhammad Ajie Laksono",
+    "JABATAN": "Admin Credit (Cepat)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 73,
+    "NAMA_KARYAWAN": "Nadya Oriza Satifa",
+    "JABATAN": "Admin Credit (Cepat)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 74,
+    "NAMA_KARYAWAN": "Istiqomah Syifa Khairani",
+    "JABATAN": "Admin Credit (Cepat)",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 75,
+    "NAMA_KARYAWAN": "Reygi Rizqi Zanuar",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 76,
+    "NAMA_KARYAWAN": "Cindy Ria Karina Siahaan",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 77,
+    "NAMA_KARYAWAN": "Delinda Ratu Nurfiyani",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 78,
+    "NAMA_KARYAWAN": "Muhammad Fachrurrozi",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 79,
+    "NAMA_KARYAWAN": "Bunga Rana Novadita",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 80,
+    "NAMA_KARYAWAN": "Risski Icha Linda Dewi",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 81,
+    "NAMA_KARYAWAN": "Ulin Nuha",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 82,
+    "NAMA_KARYAWAN": "Chelsea Putri Rani Marulafau",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 83,
+    "NAMA_KARYAWAN": "Nisrina Basyir",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 84,
+    "NAMA_KARYAWAN": "Tiara Rahma Dhani",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 85,
+    "NAMA_KARYAWAN": "Muhammad Andika Nanda Tama",
+    "JABATAN": "Admin Support",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 86,
+    "NAMA_KARYAWAN": "Vivian Dyah Setiyaningsih",
+    "JABATAN": "APU PPT Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 87,
+    "NAMA_KARYAWAN": "Moch Machfuddin",
+    "JABATAN": "Archive Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 88,
+    "NAMA_KARYAWAN": "Iqbal Bayu Putra",
+    "JABATAN": "Archive Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 89,
+    "NAMA_KARYAWAN": "Marthin Irfandi Damanik",
+    "JABATAN": "Business Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 90,
+    "NAMA_KARYAWAN": "Lilis Nurholipah",
+    "JABATAN": "Business Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 91,
+    "NAMA_KARYAWAN": "Anandita Fitri Amalia",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 92,
+    "NAMA_KARYAWAN": "Faradytha Fitriyani",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 93,
+    "NAMA_KARYAWAN": "Nurhikmawaty Rose Chair",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 94,
+    "NAMA_KARYAWAN": "Lutfiah",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 95,
+    "NAMA_KARYAWAN": "Diajeng Vita Mariza",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 96,
+    "NAMA_KARYAWAN": "Sinta Kusumadewi",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 97,
+    "NAMA_KARYAWAN": "Selviana",
+    "JABATAN": "Customer Service",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 98,
+    "NAMA_KARYAWAN": "Fitri Indah Lestari",
+    "JABATAN": "Digital Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 99,
+    "NAMA_KARYAWAN": "Trisha Gabriella Tjahjadi",
+    "JABATAN": "Funding Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 100,
+    "NAMA_KARYAWAN": "Anisa Ramadani",
+    "JABATAN": "Funding Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 101,
+    "NAMA_KARYAWAN": "Indah Rizky Nugraheni",
+    "JABATAN": "Funding Staff",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 102,
+    "NAMA_KARYAWAN": "Resti Anggraeni",
+    "JABATAN": "Funding Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 103,
+    "NAMA_KARYAWAN": "Dicky Hendrik Kusbiantoro",
+    "JABATAN": "General Affairs Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 104,
+    "NAMA_KARYAWAN": "Olivia Regina Br Sebayang",
+    "JABATAN": "General Affairs Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 105,
+    "NAMA_KARYAWAN": "Ade Erlangga",
+    "JABATAN": "General Affairs Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 106,
+    "NAMA_KARYAWAN": "Ria Rismaya Anggraeni",
+    "JABATAN": "Helpdesk",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 107,
+    "NAMA_KARYAWAN": "Anggi Anggreani",
+    "JABATAN": "Human Resources Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 108,
+    "NAMA_KARYAWAN": "Jonathan Yasi Abel Matatula",
+    "JABATAN": "Human Resources Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 109,
+    "NAMA_KARYAWAN": "Nabila Yasmin Faizati",
+    "JABATAN": "Insurance Administration Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 110,
+    "NAMA_KARYAWAN": "Ridho Santoso Handoyo",
+    "JABATAN": "Internal Auditor Staff",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 111,
+    "NAMA_KARYAWAN": "Rama Dwi Prana",
+    "JABATAN": "IT Development Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 112,
+    "NAMA_KARYAWAN": "Haytsam Adzka Mawla",
+    "JABATAN": "IT Development Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 1,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 113,
+    "NAMA_KARYAWAN": "Ferrian Muhammad Fatichin",
+    "JABATAN": "IT Development Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 114,
+    "NAMA_KARYAWAN": "Nandini Fulan Qurainni",
+    "JABATAN": "IT Operations Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 115,
+    "NAMA_KARYAWAN": "Aditya Nuzul Ramadhan",
+    "JABATAN": "Legal and Compliance Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 116,
+    "NAMA_KARYAWAN": "Kelvin Putra Perdana",
+    "JABATAN": "Manrisk, Anti Fraud Strategy, Reporting Integrity Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 117,
+    "NAMA_KARYAWAN": "Mochamad Nizar Syaiful Islam",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 118,
+    "NAMA_KARYAWAN": "Arif Rinaldi",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 119,
+    "NAMA_KARYAWAN": "Lukman Nulhakim",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 120,
+    "NAMA_KARYAWAN": "Fahma Shihsalamadhina",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 121,
+    "NAMA_KARYAWAN": "Indra Fiziko",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 122,
+    "NAMA_KARYAWAN": "Anang Kauja",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 123,
+    "NAMA_KARYAWAN": "Putri Nur Aprilianty",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 124,
+    "NAMA_KARYAWAN": "Rendi Renaldi",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 125,
+    "NAMA_KARYAWAN": "Diki Suryana",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 126,
+    "NAMA_KARYAWAN": "Cakra Pamungkas Yudhatama",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 127,
+    "NAMA_KARYAWAN": "Ermawati",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 128,
+    "NAMA_KARYAWAN": "Yunus",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 129,
+    "NAMA_KARYAWAN": "Nisa Aulia Pradina",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 130,
+    "NAMA_KARYAWAN": "Muhammad Fahmi Nugraha",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 131,
+    "NAMA_KARYAWAN": "Muhammad Yassin Hamdallah",
+    "JABATAN": "Payment",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 132,
+    "NAMA_KARYAWAN": "Tiara Adrianti",
+    "JABATAN": "Payment",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 133,
+    "NAMA_KARYAWAN": "Indriani Hardianti",
+    "JABATAN": "Reconciliation",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 134,
+    "NAMA_KARYAWAN": "Harry Rahman",
+    "JABATAN": "Recovery Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 135,
+    "NAMA_KARYAWAN": "Elsa Febriyansi",
+    "JABATAN": "Reporting",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 136,
+    "NAMA_KARYAWAN": "Assyifa Komala Riyadi",
+    "JABATAN": "Risk Business Control Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 137,
+    "NAMA_KARYAWAN": "Alifia Rachma Diani",
+    "JABATAN": "Risk Business Control Staff",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 138,
+    "NAMA_KARYAWAN": "Fatimah Az Zahra",
+    "JABATAN": "Secretary of Directors",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 139,
+    "NAMA_KARYAWAN": "Arif Budiarto",
+    "JABATAN": "Telemarketing",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 140,
+    "NAMA_KARYAWAN": "Hanny Meilani Nasution",
+    "JABATAN": "Telemarketing",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 141,
+    "NAMA_KARYAWAN": "Yushe Restiani Harahap",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 142,
+    "NAMA_KARYAWAN": "Diana Nazwita Syafira",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 143,
+    "NAMA_KARYAWAN": "Heti Rusneli",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 144,
+    "NAMA_KARYAWAN": "Renny Meisya Vilanti",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Kas Bekasi",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 145,
+    "NAMA_KARYAWAN": "Adinda Sarah Azahra",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 146,
+    "NAMA_KARYAWAN": "Nabilla Tsalsa Miftiana",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 147,
+    "NAMA_KARYAWAN": "Rastri Vantiana Rahmadani",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 148,
+    "NAMA_KARYAWAN": "Lolita Dewi Indiasari",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 149,
+    "NAMA_KARYAWAN": "Sri Ratna Dewi",
+    "JABATAN": "Teller",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "Organik"
+  },
+  {
+    "ID": 150,
+    "NAMA_KARYAWAN": "Setyo Basuki",
+    "JABATAN": "Archive Staff",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 151,
+    "NAMA_KARYAWAN": "Denny Widiyanto",
+    "JABATAN": "Technician",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 152,
+    "NAMA_KARYAWAN": "Ruwit Sudharnanto",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 153,
+    "NAMA_KARYAWAN": "Munawir",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 154,
+    "NAMA_KARYAWAN": "Renaldi Jihan Permana",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 155,
+    "NAMA_KARYAWAN": "Yoga Difendi",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Purwokerto",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 156,
+    "NAMA_KARYAWAN": "Abraham Yoseph",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 157,
+    "NAMA_KARYAWAN": "Achmad Yusuf",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 158,
+    "NAMA_KARYAWAN": "Firmansyah",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 159,
+    "NAMA_KARYAWAN": "Dicke Iskandar",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 160,
+    "NAMA_KARYAWAN": "Mitra",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 161,
+    "NAMA_KARYAWAN": "Ario Wijayanto",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 162,
+    "NAMA_KARYAWAN": "Agung Joko Santoso",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 163,
+    "NAMA_KARYAWAN": "Brillanto Gradenza",
+    "JABATAN": "Driver",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 164,
+    "NAMA_KARYAWAN": "Juju",
+    "JABATAN": "Security",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 165,
+    "NAMA_KARYAWAN": "Ahmad Sahri",
+    "JABATAN": "Security",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 166,
+    "NAMA_KARYAWAN": "Agus Setiadji",
+    "JABATAN": "Security",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 167,
+    "NAMA_KARYAWAN": "Firmadi Ardiyanto",
+    "JABATAN": "Security",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 168,
+    "NAMA_KARYAWAN": "Supardi",
+    "JABATAN": "Security",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 169,
+    "NAMA_KARYAWAN": "Okki Sulistio",
+    "JABATAN": "Marketing Staff",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 170,
+    "NAMA_KARYAWAN": "Arif Rahmad",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Kas Bekasi",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 171,
+    "NAMA_KARYAWAN": "Alfan Reynickha Fatullah",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Pusat Operasional",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 172,
+    "NAMA_KARYAWAN": "Ahmad Sujai",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Cabang Karawang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 173,
+    "NAMA_KARYAWAN": "Ayub Nurcahya",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Cabang Jakarta Timur",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 174,
+    "NAMA_KARYAWAN": "Supriyanto",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Cabang Cikarang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 175,
+    "NAMA_KARYAWAN": "Jamalludin Idrus",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Cabang Bogor",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 176,
+    "NAMA_KARYAWAN": "Imam Budiman",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Cabang Tangerang",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 177,
+    "NAMA_KARYAWAN": "Natasya Retno Wulandari",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 178,
+    "NAMA_KARYAWAN": "Ahmad Attar Rifai",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 179,
+    "NAMA_KARYAWAN": "Rusman Dani",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Cabang Depok",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  },
+  {
+    "ID": 180,
+    "NAMA_KARYAWAN": "Rivaldi Baihaqi Fadiela",
+    "JABATAN": "Office Boy",
+    "KANTOR_CABANG": "Kantor Pusat Manajemen",
+    "IS_EXCLUDED": 0,
+    "GUARANTEED_DOORPRIZE": 0,
+    "JENIS_KEPEGAWAIAN": "TAD"
+  }
+]
