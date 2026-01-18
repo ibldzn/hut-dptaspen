@@ -24,7 +24,10 @@ func main() {
 		errorExit("failed to load .env file: %v", err)
 	}
 
-	h := handler.NewHandler()
+	h, err := handler.NewHandler()
+	if err != nil {
+		errorExit("failed to create handler: %v", err)
+	}
 
 	srv, err := server.NewServer(server.Config{
 		Address: envOrDefault("ADDR", ":8080"),

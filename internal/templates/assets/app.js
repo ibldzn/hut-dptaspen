@@ -16,7 +16,8 @@ const GRAND_PRIZE_TOTAL = ROUND_PLAN.filter(
 const TAD_TARGET = 15;
 const CHUNK_SIZE = 5;
 const CHUNK_DURATION = 1400;
-const CHUNK_PAUSE = 450;
+const CHUNK_PAUSE = 1000;
+const GRAND_CHUNK_PAUSE = CHUNK_PAUSE * 5;
 const SPIN_TICK_MS = 100;
 let confettiTimer = null;
 let spinRows = [];
@@ -576,12 +577,15 @@ async function runChunkSpin(
   await wait(CHUNK_DURATION);
 
   for (let i = 0; i < chunkSize; i += 1) {
+    if (round.type === "grand") {
+      await wait(GRAND_CHUNK_PAUSE);
+    }
+
     spinCounter.value += 1;
     const spinNumber = spinCounter.value;
     const chunkLabel = `Chunk ${chunkIndex + 1}/${totalChunks} · Spin ${
       i + 1
     }/${chunkSize}`;
-    elements.overlayTitle.textContent = round.label;
     elements.overlaySub.textContent = chunkLabel;
 
     setActiveSpinRow(i);
@@ -633,6 +637,7 @@ function triggerConfetti(durationMs) {
 async function spinRound() {
   if (state.spinning) return;
   const round = ROUND_PLAN[state.currentRound];
+  elements.overlayTitle.textContent = round.label;
   if (!round) return;
 
   const validation = validateCounts();
