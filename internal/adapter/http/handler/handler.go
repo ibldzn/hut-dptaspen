@@ -7,15 +7,21 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/ibldzn/spinner-hut/internal/services"
 	"github.com/ibldzn/spinner-hut/internal/templates"
 )
 
+type Config struct {
+	EmpService *services.EmployeeService
+}
+
 type Handler struct {
+	cfg       Config
 	templates *template.Template
 	staticFS  fs.FS
 }
 
-func NewHandler() (*Handler, error) {
+func NewHandler(cfg Config) (*Handler, error) {
 	tpls, err := templates.ParseTemplates()
 	if err != nil {
 		return nil, err
@@ -28,6 +34,7 @@ func NewHandler() (*Handler, error) {
 
 	return &Handler{
 		templates: tpls,
+		cfg:       cfg,
 		staticFS:  staticFS,
 	}, nil
 }
@@ -48,6 +55,7 @@ func (h *Handler) Into() http.Handler {
 	r.Get("/spinner", h.RenderSpinnerPage)
 
 	r.Get("/api/employees", h.GetPresentEmployees)
+	r.Post("/api/employees/mark_present", h.MarkEmployeePresent)
 
 	return r
 }

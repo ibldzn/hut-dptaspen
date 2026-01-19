@@ -9,7 +9,12 @@ import (
 
 	"github.com/ibldzn/spinner-hut/internal/adapter/http/handler"
 	"github.com/ibldzn/spinner-hut/internal/adapter/http/server"
+	"github.com/ibldzn/spinner-hut/internal/repository"
+	"github.com/ibldzn/spinner-hut/internal/services"
+	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -24,7 +29,20 @@ func main() {
 		errorExit("failed to load .env file: %v", err)
 	}
 
-	h, err := handler.NewHandler()
+	db, err := sqlx.Connect("mysql", os.Getenv("GOOSE_DBSTRING"))
+	if err != nil {
+		errorExit("failed to connect to database: %v", err)
+	}
+	defer db.Close()
+
+	empRepo := repository.NewEmployeeRepository(db)
+	empService := services.NewEmployeeService(empRepo)
+
+	cfg := handler.Config{
+		EmpService: empService,
+	}
+
+	h, err := handler.NewHandler(cfg)
 	if err != nil {
 		errorExit("failed to create handler: %v", err)
 	}
