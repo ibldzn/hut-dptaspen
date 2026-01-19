@@ -18,6 +18,17 @@ func NewEmployeeRepository(db *sqlx.DB) *EmployeeRepository {
 	}
 }
 
+func (r *EmployeeRepository) GetAllEmployees(ctx context.Context) ([]model.Employee, error) {
+	var employees []model.Employee
+	query := `SELECT id, name, position, branch_office, employment_type, is_excluded, guaranteed_doorprize, present_at
+			  FROM employees`
+	err := r.db.SelectContext(ctx, &employees, query)
+	if err != nil {
+		return nil, err
+	}
+	return employees, nil
+}
+
 func (r *EmployeeRepository) GetPresentEmployees(ctx context.Context) ([]model.Employee, error) {
 	var employees []model.Employee
 	query := `SELECT id, name, position, branch_office, employment_type, is_excluded, guaranteed_doorprize, present_at

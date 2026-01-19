@@ -6,6 +6,20 @@ import (
 	"time"
 )
 
+func (h *Handler) GetAllEmployees(w http.ResponseWriter, r *http.Request) {
+	employees, err := h.cfg.EmpService.GetAllEmployees(r.Context())
+	if err != nil {
+		http.Error(w, "failed to get employees", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(employees); err != nil {
+		http.Error(w, "failed to encode response", http.StatusInternalServerError)
+		return
+	}
+}
+
 func (h *Handler) GetPresentEmployees(w http.ResponseWriter, r *http.Request) {
 	employees, err := h.cfg.EmpService.GetPresentEmployees(r.Context())
 	if err != nil {

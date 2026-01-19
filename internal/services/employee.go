@@ -18,6 +18,10 @@ func NewEmployeeService(empRepo *repository.EmployeeRepository) *EmployeeService
 	}
 }
 
+func (s *EmployeeService) GetAllEmployees(ctx context.Context) ([]model.Employee, error) {
+	return s.EmpRepository.GetAllEmployees(ctx)
+}
+
 func (s *EmployeeService) GetPresentEmployees(ctx context.Context) ([]model.Employee, error) {
 	return s.EmpRepository.GetPresentEmployees(ctx)
 }
