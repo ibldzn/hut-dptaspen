@@ -3,7 +3,9 @@ const ROUND_PLAN = [
   { id: "door-2", label: "Door Prize 2", count: 20, type: "door" },
   { id: "door-3", label: "Door Prize 3", count: 21, type: "door" },
   { id: "door-4", label: "Door Prize 4", count: 20, type: "door" },
-  { id: "grand", label: "Grand Prize", count: 3, type: "grand" },
+  { id: "grand-1", label: "Grand Prize 1", count: 1, type: "grand" },
+  { id: "grand-2", label: "Grand Prize 2", count: 1, type: "grand" },
+  { id: "grand-3", label: "Grand Prize 3", count: 1, type: "grand" },
 ];
 
 const TOTAL_WINNERS = ROUND_PLAN.reduce((sum, round) => sum + round.count, 0);
