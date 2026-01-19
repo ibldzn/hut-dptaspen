@@ -33,7 +33,7 @@ func (r *EmployeeRepository) GetPresentEmployees(ctx context.Context) ([]model.E
 	var employees []model.Employee
 	query := `SELECT id, name, position, branch_office, employment_type, is_excluded, guaranteed_doorprize, present_at
 			  FROM employees
-			  WHERE present_at IS NULL`
+			  WHERE present_at IS NOT NULL`
 	err := r.db.SelectContext(ctx, &employees, query)
 	if err != nil {
 		return nil, err

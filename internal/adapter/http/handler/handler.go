@@ -7,12 +7,14 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/cors"
 	"github.com/ibldzn/spinner-hut/internal/services"
 	"github.com/ibldzn/spinner-hut/internal/templates"
 )
 
 type Config struct {
-	EmpService *services.EmployeeService
+	EmpService    *services.EmployeeService
+	WinnerService *services.WinnerService
 }
 
 type Handler struct {
@@ -46,16 +48,41 @@ func (h *Handler) Into() http.Handler {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.RealIP)
+	r.Use(cors.AllowAll().Handler)
 
 	staticServer := http.FileServer(http.FS(h.staticFS))
 	r.Handle("/styles.css", staticServer)
 	r.Handle("/app.js", staticServer)
+	r.Handle("/admin.js", staticServer)
 	r.Handle("/public/*", staticServer)
 
 	r.Get("/spinner", h.RenderSpinnerPage)
+	r.Get("/admin", h.RenderAdminPage)
 
-	r.Get("/api/employees", h.GetPresentEmployees)
-	r.Post("/api/employees/mark_present", h.MarkEmployeePresent)
+	validateAPIKey := func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			apiKey := r.Header.Get("X-API-Key")
+			if apiKey != "Dptaspen@25!" {
+				http.Error(w, "Unauthorized", http.StatusUnauthorized)
+				return
+			}
+			next.ServeHTTP(w, r)
+		})
+	}
+
+	apiRouter := chi.NewRouter()
+	apiRouter.Group(func(r chi.Router) {
+		r.Use(validateAPIKey)
+		r.Get("/employees/present", h.GetPresentEmployees)
+		r.Get("/employees/all", h.GetAllEmployees)
+		r.Get("/employees/export", h.ExportAttendance)
+		r.Post("/employees/mark_present", h.MarkEmployeePresent)
+		r.Get("/winners", h.GetWinners)
+		r.Get("/winners/export", h.ExportWinners)
+		r.Post("/winners", h.AddWinners)
+	})
+
+	r.Mount("/api", apiRouter)
 
 	return r
 }

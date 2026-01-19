@@ -36,10 +36,13 @@ func main() {
 	defer db.Close()
 
 	empRepo := repository.NewEmployeeRepository(db)
+	winnerRepo := repository.NewWinnerRepository()
 	empService := services.NewEmployeeService(empRepo)
+	winnerService := services.NewWinnerService(winnerRepo)
 
 	cfg := handler.Config{
-		EmpService: empService,
+		EmpService:    empService,
+		WinnerService: winnerService,
 	}
 
 	h, err := handler.NewHandler(cfg)

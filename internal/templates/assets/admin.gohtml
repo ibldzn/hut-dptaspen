@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Panel - HUT DP TASPEN 36</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app admin-app">
+      <header class="hero admin-hero">
+        <div class="hero-stage admin-hero-stage">
+          <div class="hero-emblem">
+            <img src="/public/dp.png" alt="DP TASPEN" class="logo-dp" />
+            <span class="emblem-sub">DP TASPEN</span>
+            <span class="emblem-tag">ADMIN</span>
+          </div>
+          <div class="hero-copy">
+            <div class="hero-badge">Dashboard Kehadiran & Pemenang</div>
+            <h1>Admin Control</h1>
+            <p class="hero-sub">
+              Pantau kehadiran, filter data karyawan, dan export seluruh pemenang.
+            </p>
+          </div>
+          <div class="hero-crest">
+            <img src="/public/36.png" alt="36th Anniversary" class="logo-36" />
+          </div>
+        </div>
+      </header>
+
+      <section class="control-grid admin-overview">
+        <div class="panel stat-panel">
+          <div class="panel-title">Ringkasan Kehadiran</div>
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="stat-label">Total Karyawan</span>
+              <span class="stat-value" id="totalEmployees">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Hadir</span>
+              <span class="stat-value" id="totalPresent">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Belum Hadir</span>
+              <span class="stat-value" id="totalAbsent">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Persentase Hadir</span>
+              <span class="stat-value" id="presentRate">-</span>
+            </div>
+          </div>
+          <div class="status" id="attendanceTimestamp">Belum sinkron.</div>
+        </div>
+
+        <div class="panel export-panel">
+          <div class="panel-title">Export Pemenang</div>
+          <p class="panel-desc">
+            Export CSV untuk doorprize dan grandprize langsung dari database.
+          </p>
+          <div class="export-cards">
+            <div class="export-card">
+              <div class="export-meta">
+                <span class="export-label">Total Pemenang</span>
+                <span class="export-count" id="winnerCount">0</span>
+              </div>
+              <button class="btn btn-primary" id="exportWinnersBtn" type="button">
+                Export Semua Pemenang
+              </button>
+            </div>
+            <div class="export-card">
+              <div class="export-meta">
+                <span class="export-label">Presensi</span>
+                <span class="export-count" id="attendanceCount">0</span>
+              </div>
+              <button class="btn btn-primary" id="exportAttendanceBtn" type="button">
+                Export Presensi
+              </button>
+            </div>
+          </div>
+          <div class="status" id="exportStatus">Belum ada export.</div>
+        </div>
+      </section>
+
+      <section class="panel attendance-panel">
+        <div class="attendance-head">
+          <div>
+            <div class="panel-title">Kehadiran Karyawan</div>
+            <p class="panel-desc" id="attendanceSummary">
+              Menyiapkan data kehadiran...
+            </p>
+          </div>
+          <div class="attendance-actions">
+            <button class="btn btn-ghost" id="refreshAttendance" type="button">
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="attendance-controls">
+          <label class="field">
+            <span>Cari</span>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Nama, jabatan, atau cabang"
+            />
+          </label>
+          <label class="field">
+            <span>Cabang</span>
+            <select id="branchFilter">
+              <option value="all">Semua cabang</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Status</span>
+            <select id="statusFilter">
+              <option value="all">Semua status</option>
+              <option value="present">Hadir</option>
+              <option value="absent">Belum hadir</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="attendance-table-wrap">
+          <table class="attendance-table">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Cabang</th>
+                <th>Kepegawaian</th>
+                <th>Status</th>
+                <th>Waktu Hadir</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceRows"></tbody>
+          </table>
+        </div>
+
+        <div class="status" id="attendanceStatus">Menunggu data...</div>
+      </section>
+    </main>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>

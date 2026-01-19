@@ -23,6 +23,7 @@ const GRAND_CHUNK_PAUSE = CHUNK_PAUSE * 5;
 const SPIN_TICK_MS = 100;
 let confettiTimer = null;
 let spinRows = [];
+const API_KEY = "Dptaspen@25!";
 
 const state = {
   employees: [],
@@ -76,6 +77,12 @@ const elements = {
   nextChunkBtn: document.getElementById("nextChunkBtn"),
   overlayHint: document.getElementById("overlayHint"),
 };
+
+function fetchWithKey(url, options = {}) {
+  const headers = new Headers(options.headers || {});
+  headers.set("X-API-Key", API_KEY);
+  return fetch(url, { ...options, headers });
+}
 
 function setAlert(message) {
   if (!message) {
@@ -411,6 +418,40 @@ function renderRoundResults(round, winners) {
   elements.results.appendChild(group);
 }
 
+async function syncWinners(round, winners) {
+  if (!round || !winners || winners.length === 0) {
+    return;
+  }
+
+  const payload = {
+    round_id: round.id,
+    round_label: round.label,
+    prize_type: round.type,
+    winners: winners.map((winner) => ({
+      employee_id: winner.id ? String(winner.id) : "",
+      name: winner.name,
+      position: winner.position,
+      branch: winner.branch,
+      employment_type: winner.type,
+    })),
+  };
+
+  try {
+    const response = await fetchWithKey("/api/winners", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      throw new Error("sync failed");
+    }
+  } catch (error) {
+    console.warn("Failed to sync winners", error);
+  }
+}
+
 function updateSummary() {
   if (state.results.length === 0) {
     elements.resultsSummary.textContent =
@@ -695,6 +736,7 @@ async function spinRound() {
   elements.spinnerSub.textContent = `${round.count} nama telah dipilih.`;
 
   renderRoundResults(round, roundWinners);
+  syncWinners(round, roundWinners);
   state.currentRound += 1;
   state.spinning = false;
   updateQuota();
@@ -738,10 +780,10 @@ async function loadEmployees() {
   let source = "";
 
   try {
-    const response = await fetch("/api/employees");
+    const response = await fetchWithKey("/api/employees/all");
     if (response.ok) {
       data = await response.json();
-      source = "/api/employees";
+      source = "/api/employees/all";
     }
   } catch (error) {
     // ignore and fallback

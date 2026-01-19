@@ -1,8 +1,10 @@
 package handler
 
 import (
+	"encoding/csv"
 	"encoding/json"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -66,4 +68,59 @@ func (h *Handler) MarkEmployeePresent(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusNoContent)
+}
+
+func (h *Handler) ExportAttendance(w http.ResponseWriter, r *http.Request) {
+	employees, err := h.cfg.EmpService.GetAllEmployees(r.Context())
+	if err != nil {
+		http.Error(w, "failed to get employees", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/csv")
+	w.Header().Set("Content-Disposition", "attachment; filename=attendance.csv")
+
+	writer := csv.NewWriter(w)
+	if err := writer.Write([]string{
+		"id",
+		"name",
+		"position",
+		"branch_office",
+		"employment_type",
+		"present_at",
+		"attendance_status",
+	}); err != nil {
+		http.Error(w, "failed to write csv", http.StatusInternalServerError)
+		return
+	}
+
+	for _, emp := range employees {
+		status := "Belum hadir"
+		presentAt := ""
+		if emp.PresentAt != nil {
+			status = "Hadir"
+			presentAt = emp.PresentAt.Format(time.RFC3339)
+		}
+
+		record := []string{
+			strconv.FormatInt(emp.ID, 10),
+			emp.NamaKaryawan,
+			emp.Jabatan,
+			string(emp.KantorCabang),
+			string(emp.JenisKepegawaian),
+			presentAt,
+			status,
+		}
+
+		if err := writer.Write(record); err != nil {
+			http.Error(w, "failed to write csv", http.StatusInternalServerError)
+			return
+		}
+	}
+
+	writer.Flush()
+	if err := writer.Error(); err != nil {
+		http.Error(w, "failed to write csv", http.StatusInternalServerError)
+		return
+	}
 }

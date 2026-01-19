@@ -841,6 +841,160 @@ code {
   color: var(--muted);
 }
 
+.admin-app {
+  gap: 22px;
+}
+
+.admin-overview {
+  align-items: stretch;
+}
+
+.export-panel .panel-desc {
+  margin-bottom: 14px;
+}
+
+.export-cards {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.export-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 20, 32, 0.7);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.export-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.export-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.export-count {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.attendance-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attendance-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.attendance-controls {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.field input,
+.field select {
+  background: rgba(4, 14, 22, 0.7);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-family: "Sora", sans-serif;
+}
+
+.field input::placeholder {
+  color: rgba(248, 241, 230, 0.55);
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 2px solid rgba(246, 200, 107, 0.8);
+  outline-offset: 2px;
+}
+
+.attendance-table-wrap {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow-x: auto;
+  background: rgba(6, 18, 28, 0.7);
+}
+
+.attendance-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.attendance-table th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.attendance-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border: 1px solid transparent;
+}
+
+.status-pill.present {
+  background: rgba(43, 211, 200, 0.18);
+  color: #b6f8f3;
+  border-color: rgba(43, 211, 200, 0.45);
+}
+
+.status-pill.absent {
+  background: rgba(255, 140, 90, 0.18);
+  color: #ffd2c3;
+  border-color: rgba(255, 140, 90, 0.45);
+}
+
 .confetti {
   position: fixed;
   inset: 0;
