@@ -4,6 +4,7 @@ import "time"
 
 type Employee struct {
 	ID                  int64            `json:"ID" db:"id"`
+	NIP                 string           `json:"NIP" db:"nip"`
 	NamaKaryawan        string           `json:"NAMA_KARYAWAN" db:"name"`
 	Jabatan             string           `json:"JABATAN" db:"position"`
 	KantorCabang        KantorCabang     `json:"KANTOR_CABANG" db:"branch_office"`
