@@ -10,6 +10,7 @@ type Employee struct {
 	IsExcluded          int64            `json:"IS_EXCLUDED" db:"is_excluded"`
 	GuaranteedDoorprize int64            `json:"GUARANTEED_DOORPRIZE" db:"guaranteed_doorprize"`
 	JenisKepegawaian    JenisKepegawaian `json:"JENIS_KEPEGAWAIAN" db:"employment_type"`
+	Meja                *string          `json:"MEJA" db:"table"`
 	PresentAt           *time.Time       `json:"PRESENT_AT" db:"present_at"`
 }
 

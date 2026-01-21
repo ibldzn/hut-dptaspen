@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -46,24 +47,41 @@ func (h *Handler) MarkEmployeePresent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	emp, err := h.cfg.EmpService.GetEmployeeByName(r.Context(), req.Name)
-	if err != nil {
-		http.Error(w, "failed to get employee", http.StatusInternalServerError)
+	name := strings.TrimSpace(req.Name)
+	if name == "" {
+		http.Error(w, "employee name is required", http.StatusBadRequest)
 		return
 	}
 
-	if emp == nil {
-		http.Error(w, "employee not found", http.StatusNotFound)
+	emp, err := h.cfg.EmpService.GetEmployeeByName(r.Context(), name)
+	if err == nil && emp != nil {
+		if emp.PresentAt != nil {
+			http.Error(w, "employee already marked as present", http.StatusBadRequest)
+			return
+		}
+
+		if err := h.cfg.EmpService.UpdateEmployeePresentAt(r.Context(), emp.ID, time.Now()); err != nil {
+			http.Error(w, "failed to mark employee as present", http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusNoContent)
 		return
 	}
 
-	if emp.PresentAt != nil {
-		http.Error(w, "employee already marked as present", http.StatusBadRequest)
+	guest, guestErr := h.cfg.GuestService.GetGuestByName(r.Context(), name)
+	if guestErr != nil {
+		http.Error(w, "failed to get guest", http.StatusInternalServerError)
 		return
 	}
 
-	if err := h.cfg.EmpService.UpdateEmployeePresentAt(r.Context(), emp.ID, time.Now()); err != nil {
-		http.Error(w, "failed to mark employee as present", http.StatusInternalServerError)
+	if guest != nil && guest.PresentAt != nil {
+		http.Error(w, "guest already marked as present", http.StatusBadRequest)
+		return
+	}
+
+	if err := h.cfg.GuestService.AddGuest(r.Context(), name, time.Now()); err != nil {
+		http.Error(w, "failed to mark guest as present", http.StatusInternalServerError)
 		return
 	}
 
@@ -77,11 +95,18 @@ func (h *Handler) ExportAttendance(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	guests, err := h.cfg.GuestService.ListGuests(r.Context())
+	if err != nil {
+		http.Error(w, "failed to get guests", http.StatusInternalServerError)
+		return
+	}
+
 	w.Header().Set("Content-Type", "text/csv")
 	w.Header().Set("Content-Disposition", "attachment; filename=attendance.csv")
 
 	writer := csv.NewWriter(w)
 	if err := writer.Write([]string{
+		"person_type",
 		"id",
 		"name",
 		"position",
@@ -103,6 +128,7 @@ func (h *Handler) ExportAttendance(w http.ResponseWriter, r *http.Request) {
 		}
 
 		record := []string{
+			"employee",
 			strconv.FormatInt(emp.ID, 10),
 			emp.NamaKaryawan,
 			emp.Jabatan,
@@ -112,6 +138,27 @@ func (h *Handler) ExportAttendance(w http.ResponseWriter, r *http.Request) {
 			status,
 		}
 
+		if err := writer.Write(record); err != nil {
+			http.Error(w, "failed to write csv", http.StatusInternalServerError)
+			return
+		}
+	}
+
+	for _, guest := range guests {
+		presentAt := ""
+		if guest.PresentAt != nil {
+			presentAt = guest.PresentAt.Format(time.RFC3339)
+		}
+		record := []string{
+			"guest",
+			strconv.FormatInt(guest.ID, 10),
+			guest.NamaTamu,
+			"",
+			"",
+			"",
+			presentAt,
+			"Hadir",
+		}
 		if err := writer.Write(record); err != nil {
 			http.Error(w, "failed to write csv", http.StatusInternalServerError)
 			return

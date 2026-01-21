@@ -66,10 +66,68 @@
   gap: 10px;
 }
 
+.attendance-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tab-btn {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.tab-btn:hover:not(.is-active) {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.tab-btn.is-active {
+  color: #0a1b28;
+  background: linear-gradient(135deg, var(--gold), var(--coral));
+  box-shadow: 0 12px 20px rgba(246, 200, 107, 0.3);
+  border-color: transparent;
+}
+
+.attendance-pane {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attendance-pane.is-active {
+  display: flex;
+}
+
 .attendance-controls {
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.guest-controls {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: end;
+}
+
+.guest-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+}
+
+.guest-table {
+  min-width: 360px;
 }
 
 .field {

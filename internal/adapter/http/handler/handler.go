@@ -15,6 +15,7 @@ import (
 type Config struct {
 	EmpService    *services.EmployeeService
 	WinnerService *services.WinnerService
+	GuestService  *services.GuestService
 }
 
 type Handler struct {
@@ -81,6 +82,9 @@ func (h *Handler) Into() http.Handler {
 		r.Get("/employees/export", h.ExportAttendance)
 		r.Post("/employees/mark_present", h.MarkEmployeePresent)
 		r.Delete("/employees/present", h.ResetAllAttendances)
+		r.Get("/guests", h.GetGuests)
+		r.Post("/guests/mark_present", h.MarkGuestPresent)
+		r.Delete("/guests/present", h.ResetGuests)
 		r.Get("/winners", h.GetWinners)
 		r.Get("/winners/export", h.ExportWinners)
 		r.Post("/winners", h.AddWinners)

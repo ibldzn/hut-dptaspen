@@ -76,6 +76,15 @@
             </div>
             <div class="export-card">
               <div class="export-meta">
+                <span class="export-label">Presensi</span>
+                <span class="export-count" id="attendanceCount">0</span>
+              </div>
+              <button class="btn btn-primary" id="exportAttendanceBtn" type="button">
+                Export Presensi
+              </button>
+            </div>
+            <div class="export-card">
+              <div class="export-meta">
                 <span class="export-label">Reset Pemenang</span>
                 <span class="export-count">!</span>
               </div>
@@ -91,15 +100,12 @@
       <section class="panel attendance-panel">
         <div class="attendance-head">
           <div>
-            <div class="panel-title">Kehadiran Karyawan</div>
+            <div class="panel-title">Absensi</div>
             <p class="panel-desc" id="attendanceSummary">
               Menyiapkan data kehadiran...
             </p>
           </div>
           <div class="attendance-actions">
-            <button class="btn btn-primary" id="exportAttendanceBtn" type="button">
-              Export Presensi
-            </button>
             <button class="btn btn-ghost" id="refreshAttendance" type="button">
               Refresh
             </button>
@@ -109,48 +115,101 @@
           </div>
         </div>
 
-        <div class="attendance-controls">
-          <label class="field">
-            <span>Cari</span>
-            <input
-              type="search"
-              id="searchInput"
-              placeholder="Nama, jabatan, atau cabang"
-            />
-          </label>
-          <label class="field">
-            <span>Cabang</span>
-            <select id="branchFilter">
-              <option value="all">Semua cabang</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>Status</span>
-            <select id="statusFilter">
-              <option value="all">Semua status</option>
-              <option value="present">Hadir</option>
-              <option value="absent">Belum hadir</option>
-            </select>
-          </label>
+        <div class="attendance-tabs">
+          <button class="tab-btn is-active" type="button" data-tab="employees">
+            Karyawan
+          </button>
+          <button class="tab-btn" type="button" data-tab="guests">
+            Guest
+          </button>
         </div>
 
-        <div class="attendance-table-wrap">
-          <table class="attendance-table">
-            <thead>
-              <tr>
-                <th>Nama</th>
-                <th>Jabatan</th>
-                <th>Cabang</th>
-                <th>Kepegawaian</th>
-                <th>Status</th>
-                <th>Waktu Hadir</th>
-              </tr>
-            </thead>
-            <tbody id="attendanceRows"></tbody>
-          </table>
+        <div class="attendance-pane is-active" data-tab="employees">
+          <div class="attendance-controls">
+            <label class="field">
+              <span>Cari</span>
+              <input
+                type="search"
+                id="searchInput"
+                placeholder="Nama, jabatan, atau cabang"
+              />
+            </label>
+            <label class="field">
+              <span>Cabang</span>
+              <select id="branchFilter">
+                <option value="all">Semua cabang</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Status</span>
+              <select id="statusFilter">
+                <option value="all">Semua status</option>
+                <option value="present">Hadir</option>
+                <option value="absent">Belum hadir</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="attendance-table-wrap">
+            <table class="attendance-table">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Jabatan</th>
+                  <th>Cabang</th>
+                  <th>Kepegawaian</th>
+                  <th>Status</th>
+                  <th>Waktu Hadir</th>
+                </tr>
+              </thead>
+              <tbody id="attendanceRows"></tbody>
+            </table>
+          </div>
+
+          <div class="status" id="attendanceStatus">Menunggu data...</div>
         </div>
 
-        <div class="status" id="attendanceStatus">Menunggu data...</div>
+        <div class="attendance-pane" data-tab="guests">
+          <div class="guest-controls">
+            <label class="field">
+              <span>Cari Tamu</span>
+              <input
+                type="search"
+                id="guestSearchInput"
+                placeholder="Nama tamu"
+              />
+            </label>
+            <div class="guest-add">
+              <label class="field">
+                <span>Nama Tamu</span>
+                <input
+                  type="text"
+                  id="guestNameInput"
+                  placeholder="Masukkan nama tamu"
+                />
+              </label>
+              <button class="btn btn-primary" id="addGuestBtn" type="button">
+                Tambah Tamu
+              </button>
+            </div>
+          </div>
+
+          <p class="panel-desc" id="guestSummary">Menyiapkan data tamu...</p>
+
+          <div class="attendance-table-wrap">
+            <table class="attendance-table guest-table">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Waktu Hadir</th>
+                </tr>
+              </thead>
+              <tbody id="guestRows"></tbody>
+            </table>
+          </div>
+
+          <div class="status" id="guestStatus">Menunggu data...</div>
+        </div>
       </section>
     </main>
 

@@ -20,8 +20,10 @@ func NewEmployeeRepository(db *sqlx.DB) *EmployeeRepository {
 
 func (r *EmployeeRepository) GetAllEmployees(ctx context.Context) ([]model.Employee, error) {
 	var employees []model.Employee
-	query := `SELECT id, name, position, branch_office, employment_type, is_excluded, guaranteed_doorprize, present_at
-			  FROM employees`
+	query := `SELECT e.id, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+			  FROM employees e
+			  LEFT JOIN attendances a
+			  	ON a.person_type = 'employee' AND a.person_id = e.id`
 	err := r.db.SelectContext(ctx, &employees, query)
 	if err != nil {
 		return nil, err
@@ -31,9 +33,11 @@ func (r *EmployeeRepository) GetAllEmployees(ctx context.Context) ([]model.Emplo
 
 func (r *EmployeeRepository) GetPresentEmployees(ctx context.Context) ([]model.Employee, error) {
 	var employees []model.Employee
-	query := `SELECT id, name, position, branch_office, employment_type, is_excluded, guaranteed_doorprize, present_at
-			  FROM employees
-			  WHERE present_at IS NOT NULL`
+	query := `SELECT e.id, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+			  FROM employees e
+			  JOIN attendances a
+			  	ON a.person_type = 'employee' AND a.person_id = e.id
+			  WHERE a.present_at IS NOT NULL`
 	err := r.db.SelectContext(ctx, &employees, query)
 	if err != nil {
 		return nil, err
@@ -43,9 +47,11 @@ func (r *EmployeeRepository) GetPresentEmployees(ctx context.Context) ([]model.E
 
 func (r *EmployeeRepository) GetEmployeeByName(ctx context.Context, name string) (*model.Employee, error) {
 	var employee model.Employee
-	query := `SELECT id, name, position, branch_office, employment_type, is_excluded, guaranteed_doorprize, present_at
-			  FROM employees
-			  WHERE name = ?`
+	query := `SELECT e.id, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+			  FROM employees e
+			  LEFT JOIN attendances a
+			  	ON a.person_type = 'employee' AND a.person_id = e.id
+			  WHERE e.name = ?`
 	err := r.db.GetContext(ctx, &employee, query, name)
 	if err != nil {
 		return nil, err
@@ -54,13 +60,14 @@ func (r *EmployeeRepository) GetEmployeeByName(ctx context.Context, name string)
 }
 
 func (r *EmployeeRepository) UpdateEmployeePresentAt(ctx context.Context, empID int64, presentAt time.Time) error {
-	query := `UPDATE employees SET present_at = ? WHERE id = ?`
-	_, err := r.db.ExecContext(ctx, query, presentAt, empID)
+	query := `INSERT INTO attendances (person_type, person_id, present_at)
+			  VALUES ('employee', ?, ?)`
+	_, err := r.db.ExecContext(ctx, query, empID, presentAt)
 	return err
 }
 
 func (r *EmployeeRepository) ResetAllAttendances(ctx context.Context) error {
-	query := `UPDATE employees SET present_at = NULL`
+	query := `DELETE FROM attendances WHERE person_type = 'employee'`
 	_, err := r.db.ExecContext(ctx, query)
 	return err
 }

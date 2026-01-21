@@ -13,16 +13,27 @@ const elements = {
   branchFilter: document.getElementById("branchFilter"),
   statusFilter: document.getElementById("statusFilter"),
   refreshAttendance: document.getElementById("refreshAttendance"),
+  tabButtons: Array.from(document.querySelectorAll(".tab-btn")),
+  attendancePanes: Array.from(document.querySelectorAll(".attendance-pane")),
+  guestSearchInput: document.getElementById("guestSearchInput"),
+  guestNameInput: document.getElementById("guestNameInput"),
+  addGuestBtn: document.getElementById("addGuestBtn"),
+  guestRows: document.getElementById("guestRows"),
+  guestStatus: document.getElementById("guestStatus"),
+  guestSummary: document.getElementById("guestSummary"),
   exportWinnersBtn: document.getElementById("exportWinnersBtn"),
   exportAttendanceBtn: document.getElementById("exportAttendanceBtn"),
   resetWinnersBtn: document.getElementById("resetWinnersBtn"),
   resetAttendanceBtn: document.getElementById("resetAttendanceBtn"),
   exportStatus: document.getElementById("exportStatus"),
   winnerCount: document.getElementById("winnerCount"),
+  attendanceCount: document.getElementById("attendanceCount"),
 };
 
 const state = {
   employees: [],
+  guests: [],
+  activeTab: "employees",
 };
 
 function withAPIKey(options = {}) {
@@ -78,6 +89,21 @@ function setAttendanceStatus(message) {
   elements.attendanceStatus.textContent = message;
 }
 
+function setGuestStatus(message) {
+  if (!elements.guestStatus) return;
+  elements.guestStatus.textContent = message;
+}
+
+function setActiveTab(tab) {
+  state.activeTab = tab;
+  elements.tabButtons.forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.tab === tab);
+  });
+  elements.attendancePanes.forEach((pane) => {
+    pane.classList.toggle("is-active", pane.dataset.tab === tab);
+  });
+}
+
 function updateSummary(list) {
   const total = list.length;
   const present = list.filter((item) => item.present).length;
@@ -88,6 +114,11 @@ function updateSummary(list) {
   elements.totalPresent.textContent = present;
   elements.totalAbsent.textContent = absent;
   elements.presentRate.textContent = `${rate}%`;
+}
+
+function updateAttendanceCount() {
+  const total = state.employees.length + state.guests.length;
+  elements.attendanceCount.textContent = total;
 }
 
 function updateAttendanceTimestamp() {
@@ -165,6 +196,51 @@ function updateBranchFilter(list) {
   });
 }
 
+function normalizeGuest(raw) {
+  if (!raw) return null;
+  const presentAt = parseDate(raw.PRESENT_AT ?? raw.present_at ?? raw.presentAt);
+  return {
+    id: raw.ID ?? raw.id ?? 0,
+    name: raw.NAMA_TAMU ?? raw.nama_tamu ?? raw.name ?? "-",
+    presentAt,
+  };
+}
+
+function renderGuestRows(list) {
+  if (!elements.guestRows) return;
+  elements.guestRows.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  list.forEach((item) => {
+    const row = document.createElement("tr");
+    const nameCell = document.createElement("td");
+    nameCell.textContent = item.name;
+    const timeCell = document.createElement("td");
+    timeCell.textContent = formatDate(item.presentAt);
+    row.appendChild(nameCell);
+    row.appendChild(timeCell);
+    fragment.appendChild(row);
+  });
+
+  elements.guestRows.appendChild(fragment);
+}
+
+function applyGuestFilter() {
+  if (!elements.guestSearchInput) return;
+  const search = elements.guestSearchInput.value.trim().toLowerCase();
+  let filtered = [...state.guests];
+  if (search) {
+    filtered = filtered.filter((item) =>
+      item.name.toLowerCase().includes(search),
+    );
+  }
+
+  renderGuestRows(filtered);
+  if (elements.guestSummary) {
+    elements.guestSummary.textContent = `Menampilkan ${filtered.length} dari ${state.guests.length} tamu.`;
+  }
+}
+
 async function loadAttendance() {
   setAttendanceStatus("Memuat data kehadiran...");
   try {
@@ -179,10 +255,31 @@ async function loadAttendance() {
     updateBranchFilter(normalized);
     applyFilters();
     updateAttendanceTimestamp();
+    updateAttendanceCount();
     setAttendanceStatus("Data kehadiran siap.");
   } catch (error) {
     setAttendanceStatus(
       error instanceof Error ? error.message : "Gagal memuat data kehadiran.",
+    );
+  }
+}
+
+async function loadGuests() {
+  setGuestStatus("Memuat data tamu...");
+  try {
+    const data = await fetchJSON("/api/guests");
+    const list = Array.isArray(data) ? data : data.data;
+    if (!Array.isArray(list)) {
+      throw new Error("Format data tamu tidak valid");
+    }
+    const normalized = list.map(normalizeGuest).filter(Boolean);
+    state.guests = normalized;
+    applyGuestFilter();
+    updateAttendanceCount();
+    setGuestStatus("Data tamu siap.");
+  } catch (error) {
+    setGuestStatus(
+      error instanceof Error ? error.message : "Gagal memuat data tamu.",
     );
   }
 }
@@ -299,17 +396,114 @@ async function resetAttendance() {
   }
 }
 
+async function resetGuests() {
+  const confirmed = window.confirm(
+    "Yakin ingin menghapus semua data tamu? Tindakan ini tidak bisa dibatalkan.",
+  );
+  if (!confirmed) {
+    return;
+  }
+
+  setGuestStatus("Menghapus data tamu...");
+  try {
+    const response = await fetch(
+      "/api/guests/present",
+      withAPIKey({
+        method: "DELETE",
+      }),
+    );
+    if (!response.ok) {
+      throw new Error(`Reset gagal (${response.status})`);
+    }
+    await loadGuests();
+    setGuestStatus("Semua data tamu berhasil dihapus.");
+  } catch (error) {
+    setGuestStatus(
+      error instanceof Error ? error.message : "Reset tamu gagal.",
+    );
+  }
+}
+
+async function addGuest() {
+  if (!elements.guestNameInput) return;
+  const name = elements.guestNameInput.value.trim();
+  if (!name) {
+    setGuestStatus("Nama tamu wajib diisi.");
+    return;
+  }
+
+  setGuestStatus("Menyimpan data tamu...");
+  try {
+    const response = await fetch(
+      "/api/guests/mark_present",
+      withAPIKey({
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      }),
+    );
+    if (!response.ok) {
+      throw new Error(`Simpan gagal (${response.status})`);
+    }
+    elements.guestNameInput.value = "";
+    await loadGuests();
+    setGuestStatus("Tamu berhasil ditambahkan.");
+  } catch (error) {
+    setGuestStatus(
+      error instanceof Error ? error.message : "Gagal menambah tamu.",
+    );
+  }
+}
+
+function resetActiveAttendance() {
+  if (state.activeTab === "guests") {
+    resetGuests();
+    return;
+  }
+  resetAttendance();
+}
+
+function refreshActiveAttendance() {
+  if (state.activeTab === "guests") {
+    loadGuests();
+    return;
+  }
+  loadAttendance();
+}
+
 function init() {
   elements.searchInput.addEventListener("input", applyFilters);
   elements.branchFilter.addEventListener("change", applyFilters);
   elements.statusFilter.addEventListener("change", applyFilters);
-  elements.refreshAttendance.addEventListener("click", loadAttendance);
+  if (elements.guestSearchInput) {
+    elements.guestSearchInput.addEventListener("input", applyGuestFilter);
+  }
+  if (elements.addGuestBtn) {
+    elements.addGuestBtn.addEventListener("click", addGuest);
+  }
+  if (elements.guestNameInput) {
+    elements.guestNameInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        addGuest();
+      }
+    });
+  }
+  elements.refreshAttendance.addEventListener("click", refreshActiveAttendance);
   elements.exportWinnersBtn.addEventListener("click", downloadWinners);
   elements.exportAttendanceBtn.addEventListener("click", downloadAttendance);
   elements.resetWinnersBtn.addEventListener("click", resetWinners);
-  elements.resetAttendanceBtn.addEventListener("click", resetAttendance);
+  elements.resetAttendanceBtn.addEventListener("click", resetActiveAttendance);
+  elements.tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setActiveTab(btn.dataset.tab);
+    });
+  });
 
+  setActiveTab(state.activeTab);
   loadAttendance();
+  loadGuests();
   loadWinnerCounts();
 }
 
