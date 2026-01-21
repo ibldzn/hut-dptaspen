@@ -1,9 +1,7 @@
 package handler
 
 import (
-	"database/sql"
 	"encoding/json"
-	"errors"
 	"net/http"
 	"net/url"
 	"strings"
@@ -26,13 +24,10 @@ func (h *Handler) LookupInvitation(w http.ResponseWriter, r *http.Request) {
 
 	employee, err := h.cfg.EmpService.GetEmployeeByNIP(r.Context(), nip)
 	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			http.Error(w, "nip not found", http.StatusNotFound)
-			return
-		}
 		http.Error(w, "failed to lookup nip", http.StatusInternalServerError)
 		return
 	}
+
 	if employee == nil {
 		http.Error(w, "nip not found", http.StatusNotFound)
 		return
