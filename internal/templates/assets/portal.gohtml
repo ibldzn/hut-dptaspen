@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/portal.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Portal Undangan HUT DP TASPEN</title>
+  </head>
+  <body>
+    <div class="video-bg" aria-hidden="true">
+      <video autoplay muted loop playsinline poster="/public/abstract2.png">
+        <source src="/public/bg.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-overlay" aria-hidden="true"></div>
+
+    <main class="portal">
+      <header class="portal-header">
+        <div class="reveal" style="--delay: 0.1s">
+          <img src="/public/36.png" alt="36th Anniversary" class="logo-36" />
+        </div>
+        <div class="brand-block reveal" style="--delay: 0.2s">
+          <div class="brand-name">
+            <span>bank</span>
+            <img src="/public/dp.png" alt="DP TASPEN" />
+            <span>taspen</span>
+          </div>
+          <p class="brand-tagline">Inclusive, Innovative, Sustainable</p>
+        </div>
+      </header>
+
+      <section class="portal-card reveal" style="--delay: 0.3s">
+        <span class="eyebrow">Portal Undangan</span>
+        <h1 class="portal-title">Masukkan NIP untuk akses undangan</h1>
+        <p class="portal-subtitle">
+          NIP Anda akan kami cocokan dengan daftar undangan resmi acara.
+        </p>
+        <form class="portal-form" id="nipForm">
+          <label class="field">
+            <span class="label">NIP</span>
+            <input
+              id="nipInput"
+              name="nip"
+              type="text"
+              autocomplete="off"
+              placeholder="Contoh: 19890909001 atau TAD012109"
+              required
+            />
+          </label>
+          <button class="btn btn-primary" type="submit">Lanjutkan</button>
+        </form>
+        <p class="helper">Gunakan NIP tanpa spasi atau tanda baca.</p>
+      </section>
+    </main>
+
+    <div class="modal" id="errorModal" aria-hidden="true" role="dialog">
+      <div class="modal-card">
+        <button type="button" class="modal-close" id="closeModal">
+          &times;
+        </button>
+        <div class="modal-content">
+          <h2>NIP tidak terdaftar</h2>
+          <p>NIP tidak terdaftar, silahkan hubungi panitia.</p>
+        </div>
+        <button type="button" class="btn btn-muted" id="dismissBtn">
+          Tutup
+        </button>
+      </div>
+    </div>
+
+    <script src="/portal.js"></script>
+  </body>
+</html>

@@ -30,6 +30,10 @@ func (s *EmployeeService) GetEmployeeByName(ctx context.Context, name string) (*
 	return s.EmpRepository.GetEmployeeByName(ctx, name)
 }
 
+func (s *EmployeeService) GetEmployeeByNIP(ctx context.Context, nip string) (*model.Employee, error) {
+	return s.EmpRepository.GetEmployeeByNIP(ctx, nip)
+}
+
 func (s *EmployeeService) UpdateEmployeePresentAt(ctx context.Context, empID int64, presentAt time.Time) error {
 	return s.EmpRepository.UpdateEmployeePresentAt(ctx, empID, presentAt)
 }
