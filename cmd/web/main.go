@@ -37,15 +37,18 @@ func main() {
 
 	empRepo := repository.NewEmployeeRepository(db)
 	guestRepo := repository.NewGuestRepository(db)
+	scanRepo := repository.NewScanEventRepository(db)
 	winnerRepo := repository.NewWinnerRepository(db)
 	empService := services.NewEmployeeService(empRepo)
 	guestService := services.NewGuestService(guestRepo)
+	scanService := services.NewScanEventService(scanRepo)
 	winnerService := services.NewWinnerService(winnerRepo)
 
 	cfg := handler.Config{
 		EmpService:    empService,
 		WinnerService: winnerService,
 		GuestService:  guestService,
+		ScanService:   scanService,
 	}
 
 	h, err := handler.NewHandler(cfg)

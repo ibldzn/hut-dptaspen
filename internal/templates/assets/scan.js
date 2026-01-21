@@ -5,6 +5,26 @@ const videoEl = document.getElementById("qr-video");
 
 let currentData = "";
 let clearTimer = null;
+let scannerId = null;
+
+function isValidScanner(value) {
+  const number = Number(value);
+  return Number.isInteger(number) && number >= 1 && number <= 3;
+}
+
+function resolveScannerId() {
+  const params = new URLSearchParams(window.location.search);
+  const fromQuery = params.get("scanner");
+  if (isValidScanner(fromQuery)) {
+    return Number(fromQuery);
+  }
+
+  let input = "";
+  while (!isValidScanner(input)) {
+    input = window.prompt("Masukkan scanner ID (1-3):") || "";
+  }
+  return Number(input);
+}
 
 function setScanData(text) {
   if (text === currentData) {
@@ -27,13 +47,13 @@ function setScanData(text) {
 
 async function storeAttendance(name) {
   try {
-    await fetch("/api/employees/mark_present", {
+    await fetch("/api/scans", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-API-Key": API_KEY,
       },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name, scanner_id: scannerId }),
     });
   } catch (error) {
     console.error("Failed to store attendance:", error);
@@ -41,6 +61,10 @@ async function storeAttendance(name) {
 }
 
 function startScanner() {
+  if (!scannerId) {
+    scannerId = resolveScannerId();
+  }
+
   if (!videoEl) {
     console.error("Video element not found.");
     return;

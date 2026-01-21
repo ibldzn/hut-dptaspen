@@ -16,12 +16,14 @@ type Config struct {
 	EmpService    *services.EmployeeService
 	WinnerService *services.WinnerService
 	GuestService  *services.GuestService
+	ScanService   *services.ScanEventService
 }
 
 type Handler struct {
 	cfg       Config
 	templates *template.Template
 	staticFS  fs.FS
+	hub       *AttendanceHub
 }
 
 func NewHandler(cfg Config) (*Handler, error) {
@@ -39,6 +41,7 @@ func NewHandler(cfg Config) (*Handler, error) {
 		templates: tpls,
 		cfg:       cfg,
 		staticFS:  staticFS,
+		hub:       NewAttendanceHub(),
 	}, nil
 }
 
@@ -57,10 +60,12 @@ func (h *Handler) Into() http.Handler {
 	r.Handle("/invitation.css", staticServer)
 	r.Handle("/portal.css", staticServer)
 	r.Handle("/scan.css", staticServer)
+	r.Handle("/monitor.css", staticServer)
 	r.Handle("/spinner.js", staticServer)
 	r.Handle("/admin.js", staticServer)
 	r.Handle("/portal.js", staticServer)
 	r.Handle("/scan.js", staticServer)
+	r.Handle("/monitor.js", staticServer)
 	r.Handle("/public/*", staticServer)
 
 	r.Get("/", h.RenderInvitationPage)
@@ -68,6 +73,8 @@ func (h *Handler) Into() http.Handler {
 	r.Get("/spinner", h.RenderSpinnerPage)
 	r.Get("/admin", h.RenderAdminPage)
 	r.Get("/scan", h.RenderScanPage)
+	r.Get("/monitor", h.RenderMonitorPage)
+	r.Get("/ws/attendance", h.AttendanceWebsocket)
 
 	validateAPIKey := func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -88,6 +95,8 @@ func (h *Handler) Into() http.Handler {
 		r.Get("/employees/export", h.ExportAttendance)
 		r.Post("/employees/mark_present", h.MarkEmployeePresent)
 		r.Delete("/employees/present", h.ResetAllAttendances)
+		r.Post("/scans", h.CreateScanEvent)
+		r.Get("/scans/recent", h.GetRecentScans)
 		r.Get("/invitations/lookup", h.LookupInvitation)
 		r.Get("/guests", h.GetGuests)
 		r.Post("/guests/mark_present", h.MarkGuestPresent)
