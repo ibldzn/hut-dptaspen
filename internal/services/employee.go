@@ -33,3 +33,7 @@ func (s *EmployeeService) GetEmployeeByName(ctx context.Context, name string) (*
 func (s *EmployeeService) UpdateEmployeePresentAt(ctx context.Context, empID int64, presentAt time.Time) error {
 	return s.EmpRepository.UpdateEmployeePresentAt(ctx, empID, presentAt)
 }
+
+func (s *EmployeeService) ResetAllAttendances(ctx context.Context) error {
+	return s.EmpRepository.ResetAllAttendances(ctx)
+}

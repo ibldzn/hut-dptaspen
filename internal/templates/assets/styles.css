@@ -516,6 +516,7 @@ code {
 .status {
   font-size: 0.9rem;
   color: var(--muted);
+  margin-top: 1em;
 }
 
 .alert {

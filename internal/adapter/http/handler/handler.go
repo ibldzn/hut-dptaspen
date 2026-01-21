@@ -80,6 +80,7 @@ func (h *Handler) Into() http.Handler {
 		r.Get("/employees/all", h.GetAllEmployees)
 		r.Get("/employees/export", h.ExportAttendance)
 		r.Post("/employees/mark_present", h.MarkEmployeePresent)
+		r.Delete("/employees/present", h.ResetAllAttendances)
 		r.Get("/winners", h.GetWinners)
 		r.Get("/winners/export", h.ExportWinners)
 		r.Post("/winners", h.AddWinners)

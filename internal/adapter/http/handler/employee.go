@@ -124,3 +124,11 @@ func (h *Handler) ExportAttendance(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func (h *Handler) ResetAllAttendances(w http.ResponseWriter, r *http.Request) {
+	if err := h.cfg.EmpService.ResetAllAttendances(r.Context()); err != nil {
+		http.Error(w, "failed to reset attendance", http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}

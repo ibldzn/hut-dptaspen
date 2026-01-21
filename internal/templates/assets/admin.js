@@ -19,7 +19,6 @@ const elements = {
   resetAttendanceBtn: document.getElementById("resetAttendanceBtn"),
   exportStatus: document.getElementById("exportStatus"),
   winnerCount: document.getElementById("winnerCount"),
-  attendanceCount: document.getElementById("attendanceCount"),
 };
 
 const state = {
@@ -89,7 +88,6 @@ function updateSummary(list) {
   elements.totalPresent.textContent = present;
   elements.totalAbsent.textContent = absent;
   elements.presentRate.textContent = `${rate}%`;
-  elements.attendanceCount.textContent = total;
 }
 
 function updateAttendanceTimestamp() {
@@ -281,10 +279,10 @@ async function resetAttendance() {
     return;
   }
 
-  elements.exportStatus.textContent = "Menghapus data kehadiran...";
+  setAttendanceStatus("Menghapus data kehadiran...");
   try {
     const response = await fetch(
-      "/api/attendances",
+      "/api/employees/present",
       withAPIKey({
         method: "DELETE",
       }),
@@ -292,13 +290,12 @@ async function resetAttendance() {
     if (!response.ok) {
       throw new Error(`Reset gagal (${response.status})`);
     }
-
-    elements.exportStatus.textContent =
-      "Semua data kehadiran berhasil dihapus.";
     await loadAttendance();
+    setAttendanceStatus("Semua status kehadiran berhasil dihapus.");
   } catch (error) {
-    elements.exportStatus.textContent =
-      error instanceof Error ? error.message : "Reset kehadiran gagal.";
+    setAttendanceStatus(
+      error instanceof Error ? error.message : "Reset kehadiran gagal.",
+    );
   }
 }
 

@@ -62,7 +62,7 @@
         <div class="panel export-panel">
           <div class="panel-title">Export Pemenang</div>
           <p class="panel-desc">
-            Export CSV untuk doorprize dan grandprize langsung dari database.
+            Export CSV untuk doorprize dan grandprize.
           </p>
           <div class="export-cards">
             <div class="export-card">
@@ -71,16 +71,7 @@
                 <span class="export-count" id="winnerCount">0</span>
               </div>
               <button class="btn btn-primary" id="exportWinnersBtn" type="button">
-                Export Semua Pemenang
-              </button>
-            </div>
-            <div class="export-card">
-              <div class="export-meta">
-                <span class="export-label">Presensi</span>
-                <span class="export-count" id="attendanceCount">0</span>
-              </div>
-              <button class="btn btn-primary" id="exportAttendanceBtn" type="button">
-                Export Presensi
+                Export Pemenang
               </button>
             </div>
             <div class="export-card">
@@ -88,19 +79,8 @@
                 <span class="export-label">Reset Pemenang</span>
                 <span class="export-count">!</span>
               </div>
-              <p class="panel-desc">Hapus seluruh data pemenang tersimpan.</p>
               <button class="btn btn-ghost" id="resetWinnersBtn" type="button">
                 Reset Pemenang
-              </button>
-            </div>
-            <div class="export-card">
-              <div class="export-meta">
-                <span class="export-label">Reset Kehadiran</span>
-                <span class="export-count">!</span>
-              </div>
-              <p class="panel-desc">Hapus seluruh data kehadiran tersimpan.</p>
-              <button class="btn btn-ghost" id="resetAttendanceBtn" type="button">
-                Reset Kehadiran
               </button>
             </div>
           </div>
@@ -117,8 +97,14 @@
             </p>
           </div>
           <div class="attendance-actions">
+            <button class="btn btn-primary" id="exportAttendanceBtn" type="button">
+              Export Presensi
+            </button>
             <button class="btn btn-ghost" id="refreshAttendance" type="button">
               Refresh
+            </button>
+            <button class="btn btn-ghost" id="resetAttendanceBtn" type="button">
+              Reset Kehadiran
             </button>
           </div>
         </div>

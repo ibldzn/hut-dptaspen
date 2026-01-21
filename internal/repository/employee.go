@@ -58,3 +58,9 @@ func (r *EmployeeRepository) UpdateEmployeePresentAt(ctx context.Context, empID 
 	_, err := r.db.ExecContext(ctx, query, presentAt, empID)
 	return err
 }
+
+func (r *EmployeeRepository) ResetAllAttendances(ctx context.Context) error {
+	query := `UPDATE employees SET present_at = NULL`
+	_, err := r.db.ExecContext(ctx, query)
+	return err
+}
