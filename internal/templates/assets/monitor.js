@@ -45,11 +45,29 @@ function renderScanner(scannerId) {
   });
 }
 
+function normalizeName(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function uniqueByName(events) {
+  const seen = new Set();
+  const result = [];
+  events.forEach((event) => {
+    const key = normalizeName(event?.name);
+    if (!key || seen.has(key)) {
+      return;
+    }
+    seen.add(key);
+    result.push(event);
+  });
+  return result;
+}
+
 function applySnapshot(snapshot) {
   [1, 2, 3].forEach((scannerId) => {
     const key = String(scannerId);
     const events = Array.isArray(snapshot?.[key]) ? snapshot[key] : [];
-    state[scannerId] = events.slice(0, 3);
+    state[scannerId] = uniqueByName(events).slice(0, 3);
     renderScanner(scannerId);
   });
 }
@@ -76,8 +94,15 @@ function handleIncoming(event) {
   const scannerId = Number(event.scanner_id);
   if (![1, 2, 3].includes(scannerId)) return;
   const list = state[scannerId] || [];
+  const key = normalizeName(event.name);
+  const existingIndex = list.findIndex(
+    (item) => normalizeName(item.name) === key,
+  );
+  if (existingIndex !== -1) {
+    list.splice(existingIndex, 1);
+  }
   list.unshift(event);
-  state[scannerId] = list.slice(0, 3);
+  state[scannerId] = uniqueByName(list).slice(0, 3);
   renderScanner(scannerId);
 }
 
