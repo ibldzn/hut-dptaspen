@@ -36,7 +36,7 @@ func main() {
 	defer db.Close()
 
 	empRepo := repository.NewEmployeeRepository(db)
-	winnerRepo := repository.NewWinnerRepository()
+	winnerRepo := repository.NewWinnerRepository(db)
 	empService := services.NewEmployeeService(empRepo)
 	winnerService := services.NewWinnerService(winnerRepo)
 

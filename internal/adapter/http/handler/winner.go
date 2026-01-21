@@ -172,6 +172,14 @@ func (h *Handler) ExportWinners(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (h *Handler) ResetWinners(w http.ResponseWriter, r *http.Request) {
+	if err := h.cfg.WinnerService.ResetWinners(r.Context()); err != nil {
+		http.Error(w, "failed to reset winners", http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
+
 func normalizePrizeType(raw string) string {
 	switch strings.ToLower(strings.TrimSpace(raw)) {
 	case "door", "doorprize":

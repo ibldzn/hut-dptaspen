@@ -28,3 +28,7 @@ func (s *WinnerService) GetWinners(ctx context.Context) ([]model.Winner, error) 
 func (s *WinnerService) GetWinnersByType(ctx context.Context, prizeType string) ([]model.Winner, error) {
 	return s.WinnerRepository.ListWinnersByType(ctx, prizeType)
 }
+
+func (s *WinnerService) ResetWinners(ctx context.Context) error {
+	return s.WinnerRepository.ResetWinners(ctx)
+}

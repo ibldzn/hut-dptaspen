@@ -67,6 +67,7 @@ const elements = {
   roundList: document.getElementById("roundList"),
   results: document.getElementById("results"),
   resultsSummary: document.getElementById("resultsSummary"),
+  existingWinnersStatus: document.getElementById("existingWinnersStatus"),
   reloadBtn: document.getElementById("reloadBtn"),
   confetti: document.querySelector(".confetti"),
   spinOverlay: document.getElementById("spinOverlay"),
@@ -96,6 +97,11 @@ function setAlert(message) {
 
 function setStatus(message) {
   elements.dataStatus.textContent = message;
+}
+
+function setExistingWinnersStatus(message) {
+  if (!elements.existingWinnersStatus) return;
+  elements.existingWinnersStatus.textContent = message || "";
 }
 
 function normalizeEmployee(raw) {
@@ -136,6 +142,140 @@ function parseBoolish(value) {
   return false;
 }
 
+function parseDate(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+  return date;
+}
+
+function normalizeExistingWinner(raw) {
+  if (!raw) return null;
+  const prizeType = String(
+    raw.prize_type ?? raw.prizeType ?? "",
+  ).trim().toLowerCase();
+  if (prizeType !== "door" && prizeType !== "grand") {
+    return null;
+  }
+
+  const typeRaw = String(
+    raw.employment_type ?? raw.employmentType ?? raw.type ?? "",
+  ).trim().toUpperCase();
+  const employmentType = typeRaw === "TAD" ? "TAD" : "ORGANIK";
+
+  const employeeIDValue = raw.employee_id ?? raw.employeeId ?? raw.id ?? "";
+  const employeeID = employeeIDValue ? String(employeeIDValue).trim() : "";
+  const name = String(raw.name ?? raw.NAMA_KARYAWAN ?? "-").trim() || "-";
+  const position = String(raw.position ?? raw.JABATAN ?? "-").trim() || "-";
+  const branch = String(raw.branch ?? raw.KANTOR_CABANG ?? "-").trim() || "-";
+  const roundID = String(raw.round_id ?? raw.roundId ?? "").trim();
+  const roundLabel = String(raw.round_label ?? raw.roundLabel ?? "").trim();
+
+  return {
+    id: employeeID,
+    name,
+    position,
+    branch,
+    type: employmentType,
+    prizeType,
+    roundId: roundID,
+    roundLabel,
+    wonAt: parseDate(raw.won_at ?? raw.wonAt),
+  };
+}
+
+function getNextRoundIndex(winnersByRound) {
+  for (let i = 0; i < ROUND_PLAN.length; i += 1) {
+    const round = ROUND_PLAN[i];
+    const count = winnersByRound.get(round.id)?.length || 0;
+    if (count < round.count) {
+      return i;
+    }
+  }
+  return ROUND_PLAN.length;
+}
+
+function applyExistingWinners(existingWinners) {
+  if (!Array.isArray(existingWinners)) {
+    return;
+  }
+
+  const normalized = existingWinners
+    .map(normalizeExistingWinner)
+    .filter(Boolean);
+
+  if (normalized.length === 0) {
+    setExistingWinnersStatus("Belum ada pemenang tersimpan.");
+    return;
+  }
+
+  normalized.sort((a, b) => {
+    const aTime = a.wonAt ? a.wonAt.getTime() : 0;
+    const bTime = b.wonAt ? b.wonAt.getTime() : 0;
+    if (aTime !== bTime) {
+      return aTime - bTime;
+    }
+    return 0;
+  });
+
+  const winnerIds = new Set(
+    normalized.map((item) => item.id).filter(Boolean),
+  );
+  const filterPool = (list) =>
+    list.filter((item) => !winnerIds.has(String(item.id)));
+
+  state.pool.regular.organik = filterPool(state.pool.regular.organik);
+  state.pool.regular.tad = filterPool(state.pool.regular.tad);
+  state.pool.guaranteed.organik = filterPool(state.pool.guaranteed.organik);
+  state.pool.guaranteed.tad = filterPool(state.pool.guaranteed.tad);
+  state.guaranteedRemaining =
+    state.pool.guaranteed.organik.length + state.pool.guaranteed.tad.length;
+
+  const doorWinners = normalized.filter((item) => item.prizeType === "door");
+  const grandWinners = normalized.filter((item) => item.prizeType === "grand");
+  const tadDoorWinners = doorWinners.filter(
+    (item) => item.type === "TAD",
+  ).length;
+
+  state.doorPrizeDraws = doorWinners.length;
+  state.grandPrizeDraws = grandWinners.length;
+  state.remainingTad = Math.max(0, TAD_TARGET - tadDoorWinners);
+
+  state.results = normalized.map((item) => ({
+    id: item.id,
+    name: item.name,
+    position: item.position,
+    branch: item.branch,
+    type: item.type,
+  }));
+
+  const winnersByRound = new Map();
+  normalized.forEach((item) => {
+    if (!item.roundId) return;
+    const list = winnersByRound.get(item.roundId) || [];
+    list.push(item);
+    winnersByRound.set(item.roundId, list);
+  });
+
+  elements.results.innerHTML = "";
+  ROUND_PLAN.forEach((round) => {
+    const list = winnersByRound.get(round.id);
+    if (list && list.length) {
+      renderRoundResults(round, list);
+    }
+  });
+
+  state.currentRound = getNextRoundIndex(winnersByRound);
+  updateQuota();
+  updateRoundList();
+  updateRoundUI();
+  updateSummary();
+  updateSpinAvailability();
+  setExistingWinnersStatus(`Memuat ${normalized.length} pemenang tersimpan.`);
+}
+
 function initPool(records) {
   state.allEmployees = records;
   const eligible = records.filter((item) => !item.isExcluded);
@@ -172,6 +312,7 @@ function initPool(records) {
   elements.resultsSummary.textContent =
     "Belum ada pemenang. Tekan spin untuk mulai.";
   elements.resetBtn.disabled = false;
+  setExistingWinnersStatus("");
   updateSpinAvailability();
 }
 
@@ -822,11 +963,9 @@ async function spinRound() {
 
 function resetAll() {
   if (state.spinning) return;
-  if (!state.employees.length) return;
-  initPool(state.allEmployees.length ? state.allEmployees : state.employees);
+  setOverlayVisible(false);
   elements.spinnerName.textContent = "Ready";
   elements.spinnerSub.textContent = "Doorprize dimulai setelah data siap.";
-  setOverlayVisible(false);
   if (elements.nextChunkBtn) {
     elements.nextChunkBtn.disabled = true;
     elements.nextChunkBtn.textContent = "Next spin";
@@ -842,6 +981,20 @@ function resetAll() {
     confettiTimer = null;
   }
   setAlert("");
+  loadEmployees();
+}
+
+async function loadExistingWinners() {
+  try {
+    const response = await fetchWithKey("/api/winners");
+    if (!response.ok) {
+      throw new Error("bad_response");
+    }
+    const data = await response.json();
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    return null;
+  }
 }
 
 async function loadEmployees() {
@@ -882,6 +1035,14 @@ async function loadEmployees() {
     }
 
     initPool(normalized);
+    setExistingWinnersStatus("Memuat pemenang tersimpan...");
+    const existingWinners = await loadExistingWinners();
+    if (existingWinners === null) {
+      setExistingWinnersStatus("Gagal mengambil data pemenang.");
+    } else {
+      applyExistingWinners(existingWinners);
+    }
+
     const validation = validateCounts();
     if (validation) {
       setAlert(validation);

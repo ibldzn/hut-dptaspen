@@ -2,21 +2,18 @@ package repository
 
 import (
 	"context"
-	"sync"
 
 	"github.com/ibldzn/spinner-hut/internal/model"
+	"github.com/jmoiron/sqlx"
 )
 
 type WinnerRepository struct {
-	mu      sync.RWMutex
-	winners []model.Winner
-	index   map[string]struct{}
+	db *sqlx.DB
 }
 
-func NewWinnerRepository() *WinnerRepository {
+func NewWinnerRepository(db *sqlx.DB) *WinnerRepository {
 	return &WinnerRepository{
-		winners: make([]model.Winner, 0),
-		index:   make(map[string]struct{}),
+		db: db,
 	}
 }
 
@@ -25,43 +22,80 @@ func (r *WinnerRepository) AddWinners(ctx context.Context, winners []model.Winne
 		return nil
 	}
 
-	r.mu.Lock()
-	defer r.mu.Unlock()
+	query := `INSERT IGNORE INTO winners (
+		employee_id,
+		name,
+		position,
+		branch,
+		employment_type,
+		prize_type,
+		round_id,
+		round_label,
+		won_at
+	) VALUES (
+		:employee_id,
+		:name,
+		:position,
+		:branch,
+		:employment_type,
+		:prize_type,
+		:round_id,
+		:round_label,
+		:won_at
+	)`
+
+	tx, err := r.db.BeginTxx(ctx, nil)
+	if err != nil {
+		return err
+	}
+
+	stmt, err := tx.PrepareNamedContext(ctx, query)
+	if err != nil {
+		_ = tx.Rollback()
+		return err
+	}
+	defer stmt.Close()
 
 	for _, winner := range winners {
-		key := winnerKey(winner)
-		if _, exists := r.index[key]; exists {
-			continue
+		if _, err := stmt.ExecContext(ctx, winner); err != nil {
+			_ = tx.Rollback()
+			return err
 		}
-		r.index[key] = struct{}{}
-		r.winners = append(r.winners, winner)
+	}
+
+	if err := tx.Commit(); err != nil {
+		return err
 	}
 
 	return nil
 }
 
 func (r *WinnerRepository) ListWinners(ctx context.Context) ([]model.Winner, error) {
-	r.mu.RLock()
-	defer r.mu.RUnlock()
-
-	out := make([]model.Winner, len(r.winners))
-	copy(out, r.winners)
-	return out, nil
+	var winners []model.Winner
+	query := `SELECT employee_id, name, position, branch, employment_type, prize_type, round_id, round_label, won_at
+			  FROM winners
+			  ORDER BY won_at ASC`
+	err := r.db.SelectContext(ctx, &winners, query)
+	if err != nil {
+		return nil, err
+	}
+	return winners, nil
 }
 
 func (r *WinnerRepository) ListWinnersByType(ctx context.Context, prizeType string) ([]model.Winner, error) {
-	r.mu.RLock()
-	defer r.mu.RUnlock()
-
-	filtered := make([]model.Winner, 0, len(r.winners))
-	for _, winner := range r.winners {
-		if winner.PrizeType == prizeType {
-			filtered = append(filtered, winner)
-		}
+	var winners []model.Winner
+	query := `SELECT employee_id, name, position, branch, employment_type, prize_type, round_id, round_label, won_at
+			  FROM winners
+			  WHERE prize_type = ?
+			  ORDER BY won_at ASC`
+	err := r.db.SelectContext(ctx, &winners, query, prizeType)
+	if err != nil {
+		return nil, err
 	}
-	return filtered, nil
+	return winners, nil
 }
 
-func winnerKey(winner model.Winner) string {
-	return winner.EmployeeID + "|" + winner.RoundID + "|" + winner.PrizeType
+func (r *WinnerRepository) ResetWinners(ctx context.Context) error {
+	_, err := r.db.ExecContext(ctx, "DELETE FROM winners")
+	return err
 }

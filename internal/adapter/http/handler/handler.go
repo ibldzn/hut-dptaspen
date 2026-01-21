@@ -83,6 +83,7 @@ func (h *Handler) Into() http.Handler {
 		r.Get("/winners", h.GetWinners)
 		r.Get("/winners/export", h.ExportWinners)
 		r.Post("/winners", h.AddWinners)
+		r.Delete("/winners", h.ResetWinners)
 	})
 
 	r.Mount("/api", apiRouter)
