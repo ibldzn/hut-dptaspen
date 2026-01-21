@@ -68,7 +68,6 @@ const elements = {
   results: document.getElementById("results"),
   resultsSummary: document.getElementById("resultsSummary"),
   reloadBtn: document.getElementById("reloadBtn"),
-  fileInput: document.getElementById("fileInput"),
   confetti: document.querySelector(".confetti"),
   spinOverlay: document.getElementById("spinOverlay"),
   overlayTitle: document.getElementById("overlayTitle"),
@@ -77,9 +76,6 @@ const elements = {
   spinReel: document.getElementById("spinReel"),
   nextChunkBtn: document.getElementById("nextChunkBtn"),
   overlayHint: document.getElementById("overlayHint"),
-  simulateBtn: document.getElementById("simulateBtn"),
-  simulationStatus: document.getElementById("simulationStatus"),
-  simulationDetails: document.getElementById("simulationDetails"),
 };
 
 function fetchWithKey(url, options = {}) {
@@ -100,16 +96,6 @@ function setAlert(message) {
 
 function setStatus(message) {
   elements.dataStatus.textContent = message;
-}
-
-function setSimulationStatus(message) {
-  if (!elements.simulationStatus) return;
-  elements.simulationStatus.textContent = message || "";
-}
-
-function setSimulationDetails(message) {
-  if (!elements.simulationDetails) return;
-  elements.simulationDetails.textContent = message || "";
 }
 
 function normalizeEmployee(raw) {
@@ -186,8 +172,6 @@ function initPool(records) {
   elements.resultsSummary.textContent =
     "Belum ada pemenang. Tekan spin untuk mulai.";
   elements.resetBtn.disabled = false;
-  setSimulationStatus("");
-  setSimulationDetails("");
   updateSpinAvailability();
 }
 
@@ -293,13 +277,6 @@ function updateSpinAvailability() {
     isValid &&
     !isBusy
   );
-  updateSimulationAvailability();
-}
-
-function updateSimulationAvailability() {
-  if (!elements.simulateBtn) return;
-  const hasData = state.allEmployees.length > 0;
-  elements.simulateBtn.disabled = !(hasData && !state.spinning);
 }
 
 function getDisplayPool() {
@@ -484,365 +461,6 @@ function drawGrandPrize(remainingDraws) {
   const winner = pool.splice(idx, 1)[0];
   state.grandPrizeDraws += 1;
   return winner;
-}
-
-function buildSimulationBase(records) {
-  const eligible = records.filter((item) => !item.isExcluded);
-  const excludedIds = new Set(
-    records.filter((item) => item.isExcluded).map((item) => String(item.id)),
-  );
-  const guaranteed = eligible.filter((item) => item.guaranteedDoorprize);
-  const regular = eligible.filter((item) => !item.guaranteedDoorprize);
-
-  return {
-    regularOrganik: regular.filter((item) => item.type === "ORGANIK"),
-    regularTad: regular.filter((item) => item.type === "TAD"),
-    guaranteedOrganik: guaranteed.filter((item) => item.type === "ORGANIK"),
-    guaranteedTad: guaranteed.filter((item) => item.type === "TAD"),
-    guaranteedIds: new Set(guaranteed.map((item) => String(item.id))),
-    excludedIds,
-  };
-}
-
-function drawFromGroupSim(group, remainingDoorPrizeDraws, simState) {
-  if (!group || (group.tad.length === 0 && group.organik.length === 0)) {
-    return null;
-  }
-  if (remainingDoorPrizeDraws <= 0) {
-    return null;
-  }
-  const mustTad = simState.remainingTad === remainingDoorPrizeDraws;
-  const mustOrganik = simState.remainingTad === 0;
-  if (mustTad && group.tad.length === 0) {
-    return null;
-  }
-  if (mustOrganik && group.organik.length === 0) {
-    return null;
-  }
-  let pickTad = mustTad
-    ? true
-    : mustOrganik
-      ? false
-      : Math.random() < simState.remainingTad / remainingDoorPrizeDraws;
-
-  if (pickTad && group.tad.length === 0) {
-    pickTad = false;
-  }
-  if (!pickTad && group.organik.length === 0) {
-    pickTad = true;
-  }
-
-  const pool = pickTad ? group.tad : group.organik;
-  if (pool.length === 0) {
-    return null;
-  }
-  const idx = Math.floor(Math.random() * pool.length);
-  const winner = pool.splice(idx, 1)[0];
-  if (pickTad) {
-    simState.remainingTad -= 1;
-  }
-  return winner;
-}
-
-function drawFromRegularForDoorPrizeSim(remainingDoorPrizeDraws, simState) {
-  const group = simState.pool.regular;
-  if (!group || (group.tad.length === 0 && group.organik.length === 0)) {
-    return null;
-  }
-  if (remainingDoorPrizeDraws <= 0) {
-    return null;
-  }
-
-  const remainingGrandDraws = GRAND_PRIZE_TOTAL - simState.grandPrizeDraws;
-  const mustTad = simState.remainingTad === remainingDoorPrizeDraws;
-  const mustOrganik = simState.remainingTad === 0;
-  if (mustTad && group.tad.length === 0) {
-    return null;
-  }
-  if (mustOrganik && group.organik.length === 0) {
-    return null;
-  }
-  let pickTad = mustTad
-    ? true
-    : mustOrganik
-      ? false
-      : Math.random() < simState.remainingTad / remainingDoorPrizeDraws;
-
-  if (
-    !pickTad &&
-    simState.remainingTad + simState.pool.guaranteed.organik.length >=
-    remainingDoorPrizeDraws
-  ) {
-    pickTad = true;
-  }
-
-  if (!pickTad && group.organik.length - 1 < remainingGrandDraws) {
-    pickTad = true;
-  }
-
-  if (pickTad && group.tad.length === 0) {
-    return null;
-  }
-  if (!pickTad && group.organik.length === 0) {
-    return null;
-  }
-
-  const pool = pickTad ? group.tad : group.organik;
-  if (pool.length === 0) {
-    return null;
-  }
-  const idx = Math.floor(Math.random() * pool.length);
-  const winner = pool.splice(idx, 1)[0];
-  if (pickTad) {
-    simState.remainingTad -= 1;
-  }
-  return winner;
-}
-
-function drawDoorPrizeSim(remainingDraws, simState) {
-  const remainingDoorPrizeDraws = DOORPRIZE_TOTAL - simState.doorPrizeDraws;
-  if (remainingDoorPrizeDraws <= 0) {
-    return null;
-  }
-  const mustGuaranteed =
-    simState.guaranteedRemaining === remainingDoorPrizeDraws;
-  let pickGuaranteed = mustGuaranteed
-    ? true
-    : simState.guaranteedRemaining === 0
-      ? false
-      : Math.random() < simState.guaranteedRemaining / remainingDoorPrizeDraws;
-
-  let usedGuaranteed = pickGuaranteed;
-  let winner = pickGuaranteed
-    ? drawFromGroupSim(
-      simState.pool.guaranteed,
-      remainingDoorPrizeDraws,
-      simState,
-    )
-    : drawFromRegularForDoorPrizeSim(remainingDoorPrizeDraws, simState);
-
-  if (!winner) {
-    usedGuaranteed = !pickGuaranteed;
-    winner = pickGuaranteed
-      ? drawFromRegularForDoorPrizeSim(remainingDoorPrizeDraws, simState)
-      : drawFromGroupSim(
-        simState.pool.guaranteed,
-        remainingDoorPrizeDraws,
-        simState,
-      );
-  }
-
-  if (!winner) {
-    return null;
-  }
-
-  if (usedGuaranteed) {
-    simState.guaranteedRemaining -= 1;
-  }
-  simState.doorPrizeDraws += 1;
-  return winner;
-}
-
-function drawGrandPrizeSim(simState) {
-  const pool = simState.pool.regular.organik;
-  if (pool.length === 0) {
-    return null;
-  }
-  const idx = Math.floor(Math.random() * pool.length);
-  const winner = pool.splice(idx, 1)[0];
-  simState.grandPrizeDraws += 1;
-  return winner;
-}
-
-function simulateOnce(base) {
-  const simState = {
-    pool: {
-      regular: {
-        organik: base.regularOrganik.slice(),
-        tad: base.regularTad.slice(),
-      },
-      guaranteed: {
-        organik: base.guaranteedOrganik.slice(),
-        tad: base.guaranteedTad.slice(),
-      },
-    },
-    remainingTad: TAD_TARGET,
-    guaranteedRemaining: base.guaranteedIds.size,
-    doorPrizeDraws: 0,
-    grandPrizeDraws: 0,
-  };
-
-  const winners = [];
-
-  for (let r = 0; r < ROUND_PLAN.length; r += 1) {
-    const round = ROUND_PLAN[r];
-    for (let i = 0; i < round.count; i += 1) {
-      const remainingDraws = TOTAL_WINNERS - winners.length;
-      const winner =
-        round.type === "grand"
-          ? drawGrandPrizeSim(simState)
-          : drawDoorPrizeSim(remainingDraws, simState);
-      if (!winner) {
-        return { error: "draw_failed" };
-      }
-      winners.push({
-        id: String(winner.id),
-        type: winner.type,
-        roundType: round.type,
-      });
-    }
-  }
-
-  return { winners };
-}
-
-function runSimulationBatch(totalRuns) {
-  if (!state.allEmployees.length) {
-    setSimulationStatus("Data belum tersedia untuk simulasi.");
-    setSimulationDetails("");
-    return;
-  }
-  if (state.spinning) {
-    setSimulationStatus("Simulasi ditolak saat spinner berjalan.");
-    setSimulationDetails("");
-    return;
-  }
-
-  const start = performance.now();
-  const base = buildSimulationBase(state.allEmployees);
-  const failCounts = {
-    tadDoorPrize: 0,
-    grandOrganik: 0,
-    guaranteedDoorPrize: 0,
-    guaranteedGrand: 0,
-    excluded: 0,
-    drawFailure: 0,
-  };
-  let failedRuns = 0;
-  let firstFailure = null;
-
-  for (let i = 0; i < totalRuns; i += 1) {
-    const result = simulateOnce(base);
-    if (result.error) {
-      failCounts.drawFailure += 1;
-      failedRuns += 1;
-      if (!firstFailure) {
-        firstFailure = {
-          runIndex: i + 1,
-          reasons: ["Draw gagal (pool tidak cukup)"],
-        };
-      }
-      continue;
-    }
-
-    const doorPrizeWinners = result.winners.filter(
-      (item) => item.roundType === "door",
-    );
-    const grandPrizeWinners = result.winners.filter(
-      (item) => item.roundType === "grand",
-    );
-
-    const doorTadCount = doorPrizeWinners.filter(
-      (item) => item.type === "TAD",
-    ).length;
-    const grandHasNonOrganik = grandPrizeWinners.some(
-      (item) => item.type !== "ORGANIK",
-    );
-
-    const doorWinnerIds = new Set(doorPrizeWinners.map((item) => item.id));
-    const grandWinnerIds = new Set(grandPrizeWinners.map((item) => item.id));
-
-    let guaranteedMissing = false;
-    for (const id of base.guaranteedIds) {
-      if (!doorWinnerIds.has(id)) {
-        guaranteedMissing = true;
-        break;
-      }
-    }
-
-    let guaranteedInGrand = false;
-    for (const id of base.guaranteedIds) {
-      if (grandWinnerIds.has(id)) {
-        guaranteedInGrand = true;
-        break;
-      }
-    }
-
-    let excludedHit = false;
-    for (const id of base.excludedIds) {
-      if (doorWinnerIds.has(id) || grandWinnerIds.has(id)) {
-        excludedHit = true;
-        break;
-      }
-    }
-
-    let failed = false;
-    if (doorTadCount !== TAD_TARGET) {
-      failCounts.tadDoorPrize += 1;
-      failed = true;
-    }
-    if (grandHasNonOrganik) {
-      failCounts.grandOrganik += 1;
-      failed = true;
-    }
-    if (guaranteedMissing) {
-      failCounts.guaranteedDoorPrize += 1;
-      failed = true;
-    }
-    if (guaranteedInGrand) {
-      failCounts.guaranteedGrand += 1;
-      failed = true;
-    }
-    if (excludedHit) {
-      failCounts.excluded += 1;
-      failed = true;
-    }
-    if (failed) {
-      failedRuns += 1;
-      if (!firstFailure) {
-        const reasons = [];
-        if (doorTadCount !== TAD_TARGET) {
-          reasons.push(`TAD doorprize ${doorTadCount}/15`);
-        }
-        if (grandHasNonOrganik) {
-          reasons.push("Grand prize non-organik");
-        }
-        if (guaranteedMissing) {
-          reasons.push("Guaranteed tidak masuk doorprize");
-        }
-        if (guaranteedInGrand) {
-          reasons.push("Guaranteed muncul di grand prize");
-        }
-        if (excludedHit) {
-          reasons.push("Excluded terpilih");
-        }
-        firstFailure = {
-          runIndex: i + 1,
-          reasons,
-        };
-      }
-    }
-  }
-
-  const elapsedMs = Math.round(performance.now() - start);
-  const passedRuns = totalRuns - failedRuns;
-  setSimulationStatus(
-    `Simulasi ${totalRuns}x selesai (${elapsedMs} ms). ` +
-    `Lulus ${passedRuns}/${totalRuns}. ` +
-    `Fail: TAD=${failCounts.tadDoorPrize}, ` +
-    `Grand=${failCounts.grandOrganik}, ` +
-    `GuaranteedDoor=${failCounts.guaranteedDoorPrize}, ` +
-    `GuaranteedGrand=${failCounts.guaranteedGrand}, ` +
-    `Excluded=${failCounts.excluded}, ` +
-    `Draw=${failCounts.drawFailure}.`,
-  );
-  if (!firstFailure) {
-    setSimulationDetails("Semua constraint lolos.");
-  } else {
-    setSimulationDetails(
-      `Run #${firstFailure.runIndex} gagal: ${firstFailure.reasons.join(", ")}.`,
-    );
-  }
 }
 
 function renderRoundResults(round, winners) {
@@ -1224,8 +842,6 @@ function resetAll() {
     confettiTimer = null;
   }
   setAlert("");
-  setSimulationStatus("");
-  setSimulationDetails("");
 }
 
 async function loadEmployees() {
@@ -1234,35 +850,50 @@ async function loadEmployees() {
   elements.spinBtn.disabled = true;
   elements.resetBtn.disabled = true;
 
-  let data = null;
-  let source = "";
-
   try {
     const response = await fetchWithKey("/api/employees/all");
-    if (response.ok) {
-      data = await response.json();
-      source = "/api/employees/all";
+    if (!response.ok) {
+      throw new Error("bad_response");
     }
-  } catch (error) {
-    // ignore and fallback
-  }
+    const data = await response.json();
 
-  if (!data) {
-    try {
-      const response = await fetch("./data/employees.json");
-      if (response.ok) {
-        data = await response.json();
-        source = "./data/employees.json";
+    const rawList = Array.isArray(data) ? data : data.data;
+    if (!Array.isArray(rawList)) {
+      setStatus("Format data tidak dikenali.");
+      setAlert("Gunakan array JSON dengan kolom sesuai database.");
+      return;
+    }
+
+    const normalized = [];
+    let skipped = 0;
+    rawList.forEach((row) => {
+      const item = normalizeEmployee(row);
+      if (item) {
+        normalized.push(item);
+      } else {
+        skipped += 1;
       }
-    } catch (error) {
-      // ignore
-    }
-  }
+    });
 
-  if (!data) {
-    setAlert(
-      "Taruh file JSON di ./data/employees.json atau sediakan API /api/employees.",
-    );
+    if (skipped > 0) {
+      setAlert(
+        `Ada ${skipped} data dilewati karena jenis kepegawaian tidak valid.`,
+      );
+    }
+
+    initPool(normalized);
+    const validation = validateCounts();
+    if (validation) {
+      setAlert(validation);
+      setStatus("Data tidak cukup untuk menjalankan spin.");
+      updateSpinAvailability();
+      return;
+    }
+
+    setStatus("Data siap dari /api/employees/all.");
+    updateSpinAvailability();
+  } catch (error) {
+    setAlert("Gagal mengambil data dari /api/employees/all.");
     if (state.employees.length) {
       setStatus("Gagal memuat data baru. Menggunakan data sebelumnya.");
       elements.resetBtn.disabled = false;
@@ -1270,73 +901,7 @@ async function loadEmployees() {
     } else {
       setStatus("Data belum tersedia.");
     }
-    return;
   }
-
-  const rawList = Array.isArray(data) ? data : data.data;
-  if (!Array.isArray(rawList)) {
-    setStatus("Format data tidak dikenali.");
-    setAlert("Gunakan array JSON dengan kolom sesuai database.");
-    return;
-  }
-
-  const normalized = [];
-  let skipped = 0;
-  rawList.forEach((row) => {
-    const item = normalizeEmployee(row);
-    if (item) {
-      normalized.push(item);
-    } else {
-      skipped += 1;
-    }
-  });
-
-  if (skipped > 0) {
-    setAlert(
-      `Ada ${skipped} data dilewati karena jenis kepegawaian tidak valid.`,
-    );
-  }
-
-  initPool(normalized);
-  const validation = validateCounts();
-  if (validation) {
-    setAlert(validation);
-    setStatus("Data tidak cukup untuk menjalankan spin.");
-    updateSpinAvailability();
-    return;
-  }
-
-  setStatus(`Data siap dari ${source}.`);
-  updateSpinAvailability();
-}
-
-function loadFromFile(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const data = JSON.parse(reader.result);
-      const rawList = Array.isArray(data) ? data : data.data;
-      if (!Array.isArray(rawList)) {
-        throw new Error("Format JSON harus berupa array");
-      }
-      const normalized = rawList.map(normalizeEmployee).filter(Boolean);
-      initPool(normalized);
-      const validation = validateCounts();
-      if (validation) {
-        setAlert(validation);
-      } else {
-        setAlert("");
-      }
-      setStatus(`Data siap dari file ${file.name}.`);
-      updateSpinAvailability();
-    } catch (error) {
-      setAlert("Gagal membaca file. Pastikan format JSON valid.");
-    }
-  };
-  reader.readAsText(file);
 }
 
 function init() {
@@ -1344,18 +909,6 @@ function init() {
   elements.spinBtn.addEventListener("click", spinRound);
   elements.resetBtn.addEventListener("click", resetAll);
   elements.reloadBtn.addEventListener("click", loadEmployees);
-  elements.fileInput.addEventListener("change", loadFromFile);
-  if (elements.simulateBtn) {
-    elements.simulateBtn.addEventListener("click", () => {
-      if (elements.simulateBtn.disabled) return;
-      elements.simulateBtn.disabled = true;
-      setSimulationStatus("Menjalankan simulasi 100000x...");
-      setTimeout(() => {
-        runSimulationBatch(100000);
-        updateSimulationAvailability();
-      }, 50);
-    });
-  }
   loadEmployees();
 }
 

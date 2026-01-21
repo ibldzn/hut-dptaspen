@@ -52,6 +52,7 @@ func (h *Handler) Into() http.Handler {
 
 	staticServer := http.FileServer(http.FS(h.staticFS))
 	r.Handle("/styles.css", staticServer)
+	r.Handle("/admin.css", staticServer)
 	r.Handle("/invitation.css", staticServer)
 	r.Handle("/spinner.js", staticServer)
 	r.Handle("/admin.js", staticServer)

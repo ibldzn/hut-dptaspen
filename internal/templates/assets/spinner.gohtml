@@ -40,17 +40,12 @@
         <div class="panel data-panel">
           <div class="panel-title">Data Karyawan</div>
           <p class="panel-desc">
-            Sistem mencoba ambil data dari <code>/api/employees</code> lalu
-            fallback ke <code>./data/employees.json</code>.
+            Sistem mengambil data dari <code>/api/employees/all</code>.
           </p>
           <div class="data-actions">
             <button class="btn btn-ghost" id="reloadBtn" type="button">
               Muat Ulang
             </button>
-            <label class="btn btn-ghost file-btn" for="fileInput">
-              Upload JSON
-            </label>
-            <input id="fileInput" type="file" accept="application/json" />
           </div>
           <div class="status" id="dataStatus">Menunggu data...</div>
           <div class="alert" id="alertBox" role="status"></div>
@@ -113,18 +108,8 @@
             <button class="btn btn-ghost" id="resetBtn" type="button" disabled>
               Reset
             </button>
-            <button
-              class="btn btn-ghost"
-              id="simulateBtn"
-              type="button"
-              disabled
-            >
-              Simulasi 10000x
-            </button>
           </div>
           <div class="hint" id="roundHint"></div>
-          <div class="hint" id="simulationStatus"></div>
-          <div class="simulation-details" id="simulationDetails"></div>
         </div>
 
         <div class="panel rounds-panel">
