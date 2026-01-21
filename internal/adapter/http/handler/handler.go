@@ -68,10 +68,22 @@ func (h *Handler) Into() http.Handler {
 	r.Handle("/monitor.js", staticServer)
 	r.Handle("/public/*", staticServer)
 
+	adminAuth := func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			username, password, ok := r.BasicAuth()
+			if !ok || username != "admin" || password != "Dptaspen36" {
+				w.Header().Set("WWW-Authenticate", `Basic realm="Restricted"`)
+				http.Error(w, "Unauthorized", http.StatusUnauthorized)
+				return
+			}
+			next.ServeHTTP(w, r)
+		})
+	}
+
 	r.Get("/", h.RenderInvitationPage)
 	r.Get("/portal", h.RenderPortalPage)
-	r.Get("/spinner", h.RenderSpinnerPage)
-	r.Get("/admin", h.RenderAdminPage)
+	r.With(adminAuth).Get("/spinner", h.RenderSpinnerPage)
+	r.With(adminAuth).Get("/admin", h.RenderAdminPage)
 	r.Get("/scan", h.RenderScanPage)
 	r.Get("/monitor", h.RenderMonitorPage)
 	r.Get("/ws/attendance", h.AttendanceWebsocket)
