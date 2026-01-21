@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/invitation.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>HUT DP TASPEN ke-36</title>
+  </head>
+  <body>
+    <div class="video-bg" aria-hidden="true">
+      <video autoplay muted loop playsinline poster="/public/abstract2.png">
+        <source src="/public/bg.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="video-overlay" aria-hidden="true"></div>
+
+    <main class="invite">
+      <header class="invite-header">
+        <div class="reveal" style="--delay: 0.1s">
+          <img src="/public/36.png" alt="36th Anniversary" class="logo-36" />
+        </div>
+        <div class="brand-block reveal" style="--delay: 0.2s">
+          <div class="brand-name">
+            <span>bank</span>
+            <img src="/public/dp.png" alt="DP TASPEN" />
+            <span>taspen</span>
+          </div>
+          <p class="brand-tagline">Inclusive, Innovative, Sustainable</p>
+        </div>
+      </header>
+
+      <section class="invite-card reveal" style="--delay: 0.3s">
+        <div class="invitee-block">
+          <span class="label">Kepada</span>
+          <span id="invitee" class="invitee-name">Tamu Undangan</span>
+        </div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <span class="label">Date</span>
+          <p class="value">
+            Saturday, <span class="value-strong">24 January 2026</span>
+          </p>
+        </div>
+        <div class="info-row">
+          <span class="label">Time</span>
+          <p class="value">
+            <span class="value-strong">08.00 - 12.00 WIB</span>
+          </p>
+        </div>
+        <div class="info-row">
+          <span class="label">Venue</span>
+          <p class="value">
+            <span class="value-strong">Star Hall 5th Floor</span>
+            <span>Hotel Santika Mega City Bekasi</span>
+            <span>Jl. Ahmad Yani No.1</span>
+          </p>
+        </div>
+        <div class="info-row">
+          <span class="label">Event</span>
+          <p class="value">
+            36th Anniversary Celebration
+            <span class="value-strong">of Bank DP TASPEN</span>
+          </p>
+        </div>
+        <div class="info-row">
+          <span class="label">Dresscode</span>
+          <p class="value">Bebas Rapih</p>
+        </div>
+        <p class="note">Catatan: undangan berlaku untuk satu orang</p>
+        <div class="action-row">
+          <button type="button" class="btn btn-muted" id="declineBtn">
+            Tidak Hadir
+          </button>
+          <button type="button" class="btn btn-primary" id="confirmBtn">
+            Konfirmasi Hadir
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" id="responseModal" aria-hidden="true">
+      <div class="modal-card">
+        <button type="button" class="modal-close" id="closeModal">
+          &times;
+        </button>
+        <div class="modal-content">
+          <h2 id="modalTitle">Konfirmasi Kehadiran</h2>
+          <p id="modalMessage">
+            Silakan simpan QR code ini sebagai tanda hadir.
+          </p>
+          <div class="qr-wrap" id="qrWrap">
+            <img id="qrImage" alt="QR code kehadiran" />
+          </div>
+          <p class="modal-note" id="modalNote">
+            Tunjukkan QR code ini saat registrasi.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const invitee = document.getElementById("invitee");
+      const url = new URL(window.location.href);
+      const name = url.searchParams.get("name");
+      invitee.textContent = name ? name : "Tamu Undangan";
+
+      const revealItems = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "0px 0px -10% 0px",
+        },
+      );
+
+      revealItems.forEach((item) => observer.observe(item));
+
+      const modal = document.getElementById("responseModal");
+      const confirmBtn = document.getElementById("confirmBtn");
+      const declineBtn = document.getElementById("declineBtn");
+      const closeModal = document.getElementById("closeModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalMessage = document.getElementById("modalMessage");
+      const modalNote = document.getElementById("modalNote");
+      const qrImage = document.getElementById("qrImage");
+      const qrWrap = document.getElementById("qrWrap");
+
+      const showModal = () => {
+        modal.classList.add("is-visible");
+        modal.setAttribute("aria-hidden", "false");
+      };
+
+      const hideModal = () => {
+        modal.classList.remove("is-visible");
+        modal.setAttribute("aria-hidden", "true");
+      };
+
+      confirmBtn.addEventListener("click", () => {
+        let payload = `${invitee.textContent}`;
+        const panggilan = ["bpk", "ibu"];
+        for (const p of panggilan) {
+          if (payload.toLowerCase().startsWith(p + " ")) {
+            payload = payload.slice(p.length + 1);
+            break;
+          }
+        }
+        const qrUrl =
+          "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" +
+          encodeURIComponent(payload);
+        qrImage.src = qrUrl;
+        qrImage.alt = `QR code untuk ${invitee.textContent}`;
+        qrWrap.style.display = "flex";
+        modalTitle.textContent = "Konfirmasi Kehadiran";
+        modalMessage.textContent =
+          "Silakan simpan QR code ini sebagai tanda hadir.";
+        modalNote.textContent = "Tunjukkan QR code ini saat registrasi.";
+        showModal();
+      });
+
+      declineBtn.addEventListener("click", () => {
+        qrWrap.style.display = "none";
+        modalTitle.textContent = "Konfirmasi Tidak Hadir";
+        modalMessage.textContent =
+          "Terima kasih atas konfirmasi Anda. Semoga dapat bertemu di kesempatan berikutnya.";
+        modalNote.textContent = "Jika ada perubahan, silakan hubungi panitia.";
+        showModal();
+      });
+
+      closeModal.addEventListener("click", hideModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          hideModal();
+        }
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          hideModal();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -52,10 +52,12 @@ func (h *Handler) Into() http.Handler {
 
 	staticServer := http.FileServer(http.FS(h.staticFS))
 	r.Handle("/styles.css", staticServer)
-	r.Handle("/app.js", staticServer)
+	r.Handle("/invitation.css", staticServer)
+	r.Handle("/spinner.js", staticServer)
 	r.Handle("/admin.js", staticServer)
 	r.Handle("/public/*", staticServer)
 
+	r.Get("/", h.RenderInvitationPage)
 	r.Get("/spinner", h.RenderSpinnerPage)
 	r.Get("/admin", h.RenderAdminPage)
 

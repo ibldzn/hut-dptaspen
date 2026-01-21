@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HUT DP TASPEN 36 - Doorprize Spinner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="confetti" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <main class="app">
+      <header class="hero">
+        <div class="hero-stage">
+          <div class="hero-emblem">
+            <img src="/public/dp.png" alt="DP TASPEN" class="logo-dp" />
+            <span class="emblem-sub">DP TASPEN</span>
+            <span class="emblem-tag">HUT 36</span>
+          </div>
+          <div class="hero-copy">
+            <div class="hero-badge">HUT DP TASPEN ke-36</div>
+            <h1>Spin Parade</h1>
+          </div>
+          <div class="hero-crest">
+            <img src="/public/36.png" alt="36th Anniversary" class="logo-36" />
+          </div>
+        </div>
+      </header>
+
+      <section class="control-grid" style="display: none">
+        <div class="panel data-panel">
+          <div class="panel-title">Data Karyawan</div>
+          <p class="panel-desc">
+            Sistem mencoba ambil data dari <code>/api/employees</code> lalu
+            fallback ke <code>./data/employees.json</code>.
+          </p>
+          <div class="data-actions">
+            <button class="btn btn-ghost" id="reloadBtn" type="button">
+              Muat Ulang
+            </button>
+            <label class="btn btn-ghost file-btn" for="fileInput">
+              Upload JSON
+            </label>
+            <input id="fileInput" type="file" accept="application/json" />
+          </div>
+          <div class="status" id="dataStatus">Menunggu data...</div>
+          <div class="alert" id="alertBox" role="status"></div>
+        </div>
+
+        <div class="panel stat-panel">
+          <div class="panel-title">Quota & Statistik</div>
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="stat-label">Total Karyawan</span>
+              <span class="stat-value" id="totalEmployees">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Organik</span>
+              <span class="stat-value" id="totalOrganik">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">TAD</span>
+              <span class="stat-value" id="totalTad">-</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Pemenang Terkumpul</span>
+              <span class="stat-value" id="totalWinners">0</span>
+            </div>
+          </div>
+          <div class="quota">
+            <div class="quota-header">
+              <span>Target TAD</span>
+              <span id="quotaText">0 / 15</span>
+            </div>
+            <div class="quota-bar">
+              <div class="quota-fill" id="quotaFill"></div>
+            </div>
+            <div class="quota-footer" id="remainingText">Sisa spin: 85</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage-grid">
+        <div class="panel spinner-panel">
+          <div class="round-head">
+            <div class="round-label" id="currentRoundLabel">Siap Mulai</div>
+            <div class="round-sub" id="currentRoundSub">
+              Muat data untuk mulai spin.
+            </div>
+          </div>
+          <div class="spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-screen">
+              <div class="spinner-name" id="spinnerName">Ready</div>
+              <div class="spinner-sub" id="spinnerSub">
+                Doorprize dimulai setelah data siap.
+              </div>
+            </div>
+          </div>
+          <div class="spinner-actions">
+            <button class="btn btn-primary" id="spinBtn" type="button" disabled>
+              Mulai Spin
+            </button>
+            <button class="btn btn-ghost" id="resetBtn" type="button" disabled>
+              Reset
+            </button>
+            <button
+              class="btn btn-ghost"
+              id="simulateBtn"
+              type="button"
+              disabled
+            >
+              Simulasi 10000x
+            </button>
+          </div>
+          <div class="hint" id="roundHint"></div>
+          <div class="hint" id="simulationStatus"></div>
+          <div class="simulation-details" id="simulationDetails"></div>
+        </div>
+
+        <div class="panel rounds-panel">
+          <div class="panel-title">Urutan Spin</div>
+          <ul class="round-list" id="roundList"></ul>
+        </div>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="results-header">
+          <div>
+            <div class="panel-title">Pemenang</div>
+            <p class="panel-desc" id="resultsSummary">
+              Belum ada pemenang. Tekan spin untuk mulai.
+            </p>
+          </div>
+        </div>
+        <div class="results" id="results"></div>
+      </section>
+    </main>
+
+    <div class="spin-overlay" id="spinOverlay" aria-hidden="true">
+      <div class="overlay-card">
+        <div class="overlay-header">
+          <div class="overlay-title" id="overlayTitle">Door Prize</div>
+          <div class="overlay-sub" id="overlaySub">Chunk 1/4</div>
+        </div>
+        <div class="spin-stage">
+          <div class="spin-frame" id="spinFrame">
+            <div class="spin-reel" id="spinReel"></div>
+          </div>
+        </div>
+        <div class="overlay-actions">
+          <button class="btn btn-primary" id="nextChunkBtn" type="button" disabled>
+            Next spin
+          </button>
+          <span class="overlay-hint" id="overlayHint"></span>
+        </div>
+      </div>
+    </div>
+
+    <script src="/spinner.js"></script>
+  </body>
+</html>

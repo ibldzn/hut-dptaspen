@@ -995,6 +995,15 @@ code {
   border-color: rgba(255, 140, 90, 0.45);
 }
 
+.simulation-details {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  padding-left: 12px;
+  min-height: 18px;
+}
+
 .confetti {
   position: fixed;
   inset: 0;
