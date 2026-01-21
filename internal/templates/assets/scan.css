@@ -1,0 +1,131 @@
+:root {
+  --background: #050914;
+  --foreground: #f5f8ff;
+  --scan-ink: #f5f8ff;
+  --scan-accent: #f6c65d;
+  --scan-blue: #6da2ff;
+  --scan-card: rgba(9, 18, 50, 0.88);
+  --scan-card-strong: rgba(7, 12, 38, 0.96);
+  --scan-stroke: rgba(255, 255, 255, 0.15);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Sora", "Segoe UI", sans-serif;
+}
+
+.font-display {
+  font-family: "Cinzel", "Times New Roman", serif;
+}
+
+.scan-shell {
+  position: relative;
+  isolation: isolate;
+  color: var(--scan-ink);
+}
+
+.scan-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at top,
+      rgba(109, 162, 255, 0.2),
+      transparent 55%
+    ),
+    linear-gradient(135deg, rgba(5, 9, 20, 0.9), rgba(12, 30, 62, 0.65));
+  z-index: -1;
+  pointer-events: none;
+}
+
+.scan-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.1) brightness(0.45);
+}
+
+.scan-logo-bar {
+  background: rgba(6, 12, 28, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.scan-title {
+  letter-spacing: 0.1em;
+  text-shadow: 0 18px 35px rgba(0, 0, 0, 0.55);
+}
+
+.scan-subtitle {
+  color: var(--scan-accent);
+  letter-spacing: 0.14em;
+}
+
+.scan-name-card,
+.scan-table-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+}
+
+.scan-name-card {
+  background: linear-gradient(165deg, var(--scan-card), var(--scan-card-strong));
+  border: 1px solid var(--scan-stroke);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+}
+
+.scan-name-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at top,
+      rgba(109, 162, 255, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom,
+      rgba(246, 198, 93, 0.18),
+      transparent 60%
+    );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.scan-table-card {
+  background: linear-gradient(165deg, #f9d26f, #f3a43f);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 25px 50px rgba(246, 198, 93, 0.35);
+  color: #1b1202;
+}
+
+.scan-table-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/public/abstract.png");
+  background-size: 180px;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.scan-card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.scan-abstract {
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  filter: saturate(1.1);
+}
+
+.scan-camera {
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(7, 12, 38, 0.75);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+}

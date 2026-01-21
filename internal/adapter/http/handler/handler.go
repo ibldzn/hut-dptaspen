@@ -55,13 +55,16 @@ func (h *Handler) Into() http.Handler {
 	r.Handle("/styles.css", staticServer)
 	r.Handle("/admin.css", staticServer)
 	r.Handle("/invitation.css", staticServer)
+	r.Handle("/scan.css", staticServer)
 	r.Handle("/spinner.js", staticServer)
 	r.Handle("/admin.js", staticServer)
+	r.Handle("/scan.js", staticServer)
 	r.Handle("/public/*", staticServer)
 
 	r.Get("/", h.RenderInvitationPage)
 	r.Get("/spinner", h.RenderSpinnerPage)
 	r.Get("/admin", h.RenderAdminPage)
+	r.Get("/scan", h.RenderScanPage)
 
 	validateAPIKey := func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
