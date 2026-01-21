@@ -15,6 +15,8 @@ const elements = {
   refreshAttendance: document.getElementById("refreshAttendance"),
   exportWinnersBtn: document.getElementById("exportWinnersBtn"),
   exportAttendanceBtn: document.getElementById("exportAttendanceBtn"),
+  resetWinnersBtn: document.getElementById("resetWinnersBtn"),
+  resetAttendanceBtn: document.getElementById("resetAttendanceBtn"),
   exportStatus: document.getElementById("exportStatus"),
   winnerCount: document.getElementById("winnerCount"),
   attendanceCount: document.getElementById("attendanceCount"),
@@ -49,7 +51,9 @@ function parseDate(raw) {
 
 function normalizeEmployee(raw) {
   if (!raw) return null;
-  const presentAt = parseDate(raw.PRESENT_AT ?? raw.present_at ?? raw.presentAt);
+  const presentAt = parseDate(
+    raw.PRESENT_AT ?? raw.present_at ?? raw.presentAt,
+  );
   return {
     name: raw.NAMA_KARYAWAN ?? raw.nama_karyawan ?? raw.name ?? "-",
     position: raw.JABATAN ?? raw.jabatan ?? raw.position ?? "-",
@@ -180,9 +184,7 @@ async function loadAttendance() {
     setAttendanceStatus("Data kehadiran siap.");
   } catch (error) {
     setAttendanceStatus(
-      error instanceof Error
-        ? error.message
-        : "Gagal memuat data kehadiran.",
+      error instanceof Error ? error.message : "Gagal memuat data kehadiran.",
     );
   }
 }
@@ -244,19 +246,71 @@ async function downloadAttendance() {
   }
 }
 
+async function resetWinners() {
+  const confirmed = window.confirm(
+    "Yakin ingin menghapus semua data pemenang? Tindakan ini tidak bisa dibatalkan.",
+  );
+  if (!confirmed) {
+    return;
+  }
+
+  elements.exportStatus.textContent = "Menghapus data pemenang...";
+  try {
+    const response = await fetch(
+      "/api/winners",
+      withAPIKey({
+        method: "DELETE",
+      }),
+    );
+    if (!response.ok) {
+      throw new Error(`Reset gagal (${response.status})`);
+    }
+    elements.exportStatus.textContent = "Semua pemenang berhasil dihapus.";
+    await loadWinnerCounts();
+  } catch (error) {
+    elements.exportStatus.textContent =
+      error instanceof Error ? error.message : "Reset pemenang gagal.";
+  }
+}
+
+async function resetAttendance() {
+  const confirmed = window.confirm(
+    "Yakin ingin menghapus semua data kehadiran? Tindakan ini tidak bisa dibatalkan.",
+  );
+  if (!confirmed) {
+    return;
+  }
+
+  elements.exportStatus.textContent = "Menghapus data kehadiran...";
+  try {
+    const response = await fetch(
+      "/api/attendances",
+      withAPIKey({
+        method: "DELETE",
+      }),
+    );
+    if (!response.ok) {
+      throw new Error(`Reset gagal (${response.status})`);
+    }
+
+    elements.exportStatus.textContent =
+      "Semua data kehadiran berhasil dihapus.";
+    await loadAttendance();
+  } catch (error) {
+    elements.exportStatus.textContent =
+      error instanceof Error ? error.message : "Reset kehadiran gagal.";
+  }
+}
+
 function init() {
   elements.searchInput.addEventListener("input", applyFilters);
   elements.branchFilter.addEventListener("change", applyFilters);
   elements.statusFilter.addEventListener("change", applyFilters);
-  elements.refreshAttendance.addEventListener("click", () => {
-    loadAttendance();
-  });
-  elements.exportWinnersBtn.addEventListener("click", () => {
-    downloadWinners();
-  });
-  elements.exportAttendanceBtn.addEventListener("click", () => {
-    downloadAttendance();
-  });
+  elements.refreshAttendance.addEventListener("click", loadAttendance);
+  elements.exportWinnersBtn.addEventListener("click", downloadWinners);
+  elements.exportAttendanceBtn.addEventListener("click", downloadAttendance);
+  elements.resetWinnersBtn.addEventListener("click", resetWinners);
+  elements.resetAttendanceBtn.addEventListener("click", resetAttendance);
 
   loadAttendance();
   loadWinnerCounts();
