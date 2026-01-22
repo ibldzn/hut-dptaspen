@@ -1,8 +1,8 @@
 const ROUND_PLAN = [
-  { id: "door-1", label: "Door Prize 1", count: 21, type: "door" },
-  { id: "door-2", label: "Door Prize 2", count: 20, type: "door" },
-  { id: "door-3", label: "Door Prize 3", count: 21, type: "door" },
-  { id: "door-4", label: "Door Prize 4", count: 20, type: "door" },
+  { id: "door-1", label: "Door Prize 1", count: 25, type: "door" },
+  { id: "door-2", label: "Door Prize 2", count: 25, type: "door" },
+  { id: "door-3", label: "Door Prize 3", count: 22, type: "door" },
+  { id: "door-4", label: "Door Prize 4", count: 26, type: "door" },
   { id: "grand-1", label: "Grand Prize 1", count: 1, type: "grand" },
   { id: "grand-2", label: "Grand Prize 2", count: 1, type: "grand" },
   { id: "grand-3", label: "Grand Prize 3", count: 1, type: "grand" },
@@ -117,8 +117,8 @@ function normalizeEmployee(raw) {
   );
   const guaranteedDoorprize = parseBoolish(
     raw.GUARANTEED_DOORPRIZE ??
-    raw.guaranteed_doorprize ??
-    raw.guaranteedDoorprize,
+      raw.guaranteed_doorprize ??
+      raw.guaranteedDoorprize,
   );
   const fallbackId = `${Date.now()}-${Math.floor(Math.random() * 1e9)}`;
   return {
@@ -153,16 +153,18 @@ function parseDate(value) {
 
 function normalizeExistingWinner(raw) {
   if (!raw) return null;
-  const prizeType = String(
-    raw.prize_type ?? raw.prizeType ?? "",
-  ).trim().toLowerCase();
+  const prizeType = String(raw.prize_type ?? raw.prizeType ?? "")
+    .trim()
+    .toLowerCase();
   if (prizeType !== "door" && prizeType !== "grand") {
     return null;
   }
 
   const typeRaw = String(
     raw.employment_type ?? raw.employmentType ?? raw.type ?? "",
-  ).trim().toUpperCase();
+  )
+    .trim()
+    .toUpperCase();
   const employmentType = typeRaw === "TAD" ? "TAD" : "ORGANIK";
 
   const employeeIDValue = raw.employee_id ?? raw.employeeId ?? raw.id ?? "";
@@ -220,9 +222,7 @@ function applyExistingWinners(existingWinners) {
     return 0;
   });
 
-  const winnerIds = new Set(
-    normalized.map((item) => item.id).filter(Boolean),
-  );
+  const winnerIds = new Set(normalized.map((item) => item.id).filter(Boolean));
   const filterPool = (list) =>
     list.filter((item) => !winnerIds.has(String(item.id)));
 
@@ -529,7 +529,7 @@ function drawFromRegularForDoorPrize(remainingDoorPrizeDraws) {
   if (
     !pickTad &&
     state.remainingTad + state.pool.guaranteed.organik.length >=
-    remainingDoorPrizeDraws
+      remainingDoorPrizeDraws
   ) {
     pickTad = true;
   }
@@ -843,8 +843,9 @@ async function runChunkSpin(
 
     spinCounter.value += 1;
     const spinNumber = spinCounter.value;
-    const chunkLabel = `Chunk ${chunkIndex + 1}/${totalChunks} · Spin ${i + 1
-      }/${chunkSize}`;
+    const chunkLabel = `Chunk ${chunkIndex + 1}/${totalChunks} · Spin ${
+      i + 1
+    }/${chunkSize}`;
     elements.overlaySub.textContent = chunkLabel;
 
     setActiveSpinRow(i);
@@ -920,8 +921,9 @@ async function spinRound() {
     for (let i = 0; i < chunks.length; i += 1) {
       const label = i === 0 ? "Start spin" : "Next spin";
       const hint = `Tekan untuk mulai chunk ${i + 1} dari ${chunks.length}.`;
-      elements.overlaySub.textContent = `Chunk ${i + 1}/${chunks.length} · ${chunks[i]
-        } nama`;
+      elements.overlaySub.textContent = `Chunk ${i + 1}/${chunks.length} · ${
+        chunks[i]
+      } nama`;
       await waitForChunkTrigger(label, hint);
       await runChunkSpin(
         round,
