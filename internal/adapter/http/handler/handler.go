@@ -48,10 +48,10 @@ func NewHandler(cfg Config) (*Handler, error) {
 func (h *Handler) Into() http.Handler {
 	r := chi.NewRouter()
 
-	r.Use(middleware.RequestID)
-	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.RealIP)
+	r.Use(middleware.RequestID)
+	r.Use(middleware.Logger)
 	r.Use(cors.AllowAll().Handler)
 
 	staticServer := http.FileServer(http.FS(h.staticFS))
@@ -66,6 +66,7 @@ func (h *Handler) Into() http.Handler {
 	r.Handle("/portal.js", staticServer)
 	r.Handle("/scan.js", staticServer)
 	r.Handle("/monitor.js", staticServer)
+	r.Handle("/favicon.ico", staticServer)
 	r.Handle("/public/*", staticServer)
 
 	adminAuth := func(next http.Handler) http.Handler {
