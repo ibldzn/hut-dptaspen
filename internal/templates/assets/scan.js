@@ -60,6 +60,10 @@ async function storeAttendance(name) {
   }
 }
 
+function allNumbers(str) {
+  return /^\d+$/.test(str);
+}
+
 function startScanner() {
   if (!scannerId) {
     scannerId = resolveScannerId();
@@ -78,7 +82,12 @@ function startScanner() {
   const reader = new ZXing.BrowserMultiFormatReader();
   reader.decodeFromVideoDevice(null, videoEl, (result, err) => {
     if (result) {
-      setScanData(result.getText());
+      const txt = result.getText();
+      // ghetto fix
+      if (allNumbers(txt)) {
+        return;
+      }
+      setScanData(txt);
     } else if (err && err.name !== "NotFoundException") {
       console.error("QR scan error:", err);
     }
