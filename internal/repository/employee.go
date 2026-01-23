@@ -20,7 +20,7 @@ func NewEmployeeRepository(db *sqlx.DB) *EmployeeRepository {
 
 func (r *EmployeeRepository) GetAllEmployees(ctx context.Context) ([]model.Employee, error) {
 	var employees []model.Employee
-	query := `SELECT e.id, e.nip, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+	query := `SELECT e.id, e.nip, e.nip_alt, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
 			  FROM employees e
 			  LEFT JOIN attendances a
 			  	ON a.person_type = 'employee' AND a.person_id = e.id`
@@ -33,7 +33,7 @@ func (r *EmployeeRepository) GetAllEmployees(ctx context.Context) ([]model.Emplo
 
 func (r *EmployeeRepository) GetPresentEmployees(ctx context.Context) ([]model.Employee, error) {
 	var employees []model.Employee
-	query := `SELECT e.id, e.nip, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+	query := `SELECT e.id, e.nip, e.nip_alt, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
 			  FROM employees e
 			  JOIN attendances a
 			  	ON a.person_type = 'employee' AND a.person_id = e.id
@@ -47,7 +47,7 @@ func (r *EmployeeRepository) GetPresentEmployees(ctx context.Context) ([]model.E
 
 func (r *EmployeeRepository) GetEmployeeByName(ctx context.Context, name string) (*model.Employee, error) {
 	var employee model.Employee
-	query := `SELECT e.id, e.nip, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+	query := `SELECT e.id, e.nip, e.nip_alt, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
 			  FROM employees e
 			  LEFT JOIN attendances a
 			  	ON a.person_type = 'employee' AND a.person_id = e.id
@@ -61,12 +61,12 @@ func (r *EmployeeRepository) GetEmployeeByName(ctx context.Context, name string)
 
 func (r *EmployeeRepository) GetEmployeeByNIP(ctx context.Context, nip string) (*model.Employee, error) {
 	var employee model.Employee
-	query := `SELECT e.id, e.nip, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
+	query := `SELECT e.id, e.nip, e.nip_alt, e.name, e.position, e.branch_office, e.employment_type, e.is_excluded, e.guaranteed_doorprize, a.present_at
 			  FROM employees e
 			  LEFT JOIN attendances a
 			  	ON a.person_type = 'employee' AND a.person_id = e.id
-			  WHERE e.nip = ?`
-	err := r.db.GetContext(ctx, &employee, query, nip)
+			  WHERE e.nip = ? OR e.nip_alt = ?`
+	err := r.db.GetContext(ctx, &employee, query, nip, nip)
 	if err != nil {
 		return nil, err
 	}
