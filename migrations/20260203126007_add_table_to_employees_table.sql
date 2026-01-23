@@ -1,12 +1,11 @@
 -- +goose Up
 -- +goose StatementBegin
--- unique nip
 ALTER TABLE employees
-ADD COLUMN nip VARCHAR(20) UNIQUE NOT NULL AFTER id;
+ADD COLUMN `table` VARCHAR(50) NULL AFTER nip_alt;
 -- +goose StatementEnd
 
 -- +goose Down
 -- +goose StatementBegin
 ALTER TABLE employees
-DROP COLUMN nip;
+DROP COLUMN `table`;
 -- +goose StatementEnd

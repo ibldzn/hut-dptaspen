@@ -2,6 +2,7 @@
 -- +goose StatementBegin
 CREATE TABLE employees (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    nip VARCHAR(20) NOT NULL,
     name VARCHAR(100) NOT NULL,
     position VARCHAR(100) NOT NULL,
     branch_office VARCHAR(100) NOT NULL,

@@ -61,6 +61,14 @@
             <span>Jl. Ahmad Yani No.1</span>
           </p>
         </div>
+        {{if .Table}}
+          <div class="info-row">
+            <span class="label">Table</span>
+            <p class="value">
+              <span class="value-strong">{{.Table}}</span>
+            </p>
+          </div>
+        {{end}}
         <div class="info-row">
           <span class="label">Event</span>
           <p class="value">
