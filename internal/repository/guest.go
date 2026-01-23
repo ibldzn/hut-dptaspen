@@ -21,7 +21,7 @@ func NewGuestRepository(db *sqlx.DB) *GuestRepository {
 
 func (r *GuestRepository) ListGuests(ctx context.Context) ([]model.Guest, error) {
 	var guests []model.Guest
-	query := "SELECT id, name, `table`, present_at FROM guests ORDER BY present_at ASC"
+	query := "SELECT id, name, `table`, present_at FROM guests WHERE present_at IS NOT NULL ORDER BY present_at ASC"
 	err := r.db.SelectContext(ctx, &guests, query)
 	if err != nil {
 		return nil, err
