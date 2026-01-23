@@ -84,24 +84,29 @@ func (h *Handler) GetRecentScans(w http.ResponseWriter, r *http.Request) {
 func (h *Handler) ensureAttendance(ctx context.Context, name string, scannedAt time.Time) (bool, error) {
 	emp, err := h.cfg.EmpService.GetEmployeeByName(ctx, name)
 	if err == nil && emp != nil {
-		if emp.PresentAt == nil {
-			if err := h.cfg.EmpService.UpdateEmployeePresentAt(ctx, emp.ID, scannedAt); err != nil {
-				return false, err
-			}
-			return true, nil
+		if emp.PresentAt != nil {
+			return false, nil
 		}
-		return false, nil
+
+		if err := h.cfg.EmpService.UpdateEmployeePresentAt(ctx, emp.ID, scannedAt); err != nil {
+			return false, err
+		}
+
+		return true, nil
 	}
 
 	guest, guestErr := h.cfg.GuestService.GetGuestByName(ctx, name)
 	if guestErr != nil {
 		return false, guestErr
 	}
+
 	if guest != nil && guest.PresentAt != nil {
 		return false, nil
 	}
+
 	if err := h.cfg.GuestService.AddGuest(ctx, name, scannedAt); err != nil {
 		return false, err
 	}
+
 	return true, nil
 }
