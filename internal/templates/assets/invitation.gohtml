@@ -72,7 +72,9 @@
           <span class="label">Dresscode</span>
           <p class="value">{{.DressCode}}</p>
         </div>
-        <p class="note">Catatan: undangan berlaku untuk satu orang</p>
+        {{if .AdditionalInfo}}
+          <p class="note">{{.AdditionalInfo}}</p>
+        {{end}}
         <div class="action-row">
           <button type="button" class="btn btn-muted" id="declineBtn">
             Tidak Hadir
