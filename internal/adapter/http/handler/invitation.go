@@ -14,6 +14,10 @@ func (h *Handler) RenderInvitationPage(w http.ResponseWriter, r *http.Request) {
 		if emp.Meja != nil {
 			table = *emp.Meja
 		}
+	} else if g, err := h.cfg.GuestService.GetGuestByName(r.Context(), guest); err == nil && g != nil {
+		if g.Meja != nil {
+			table = *g.Meja
+		}
 	}
 
 	data := map[string]any{
